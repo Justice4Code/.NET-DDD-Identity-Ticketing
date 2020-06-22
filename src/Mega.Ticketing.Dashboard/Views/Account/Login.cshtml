@@ -1,0 +1,158 @@
+﻿@using Mega.Ticketing.Dashboard.Models
+@model LoginViewModel
+@{
+    Layout = null;
+}
+
+<html lang="en">
+
+<!-- begin::Head -->
+<head>
+    <meta charset="utf-8" />
+    <title>پنل مدیریت | سامانه تیکتینگ مگا</title>
+    <meta name="description" content="Login page example">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--begin::Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700">
+
+    <!--end::Fonts -->
+    <!--begin::Page Custom Styles(used by this page) -->
+    <link href="~/Resources/Metronic/assets/css/pages/login/login-6.css" rel="stylesheet" type="text/css" />
+
+    <!--end::Page Custom Styles -->
+    <!--begin::Global Theme Styles(used by all pages) -->
+    <link href="~/Resources/Metronic/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Resources/Metronic/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+
+    <!--end::Global Theme Styles -->
+    <!--begin::Layout Skins(used by all pages) -->
+    <link href="~/Resources/Metronic/assets/css/skins/header/base/light.css" rel="stylesheet" type="text/css" />
+    <link href="~/Resources/Metronic/assets/css/skins/header/menu/light.css" rel="stylesheet" type="text/css" />
+    <link href="~/Resources/Metronic/assets/css/skins/brand/dark.css" rel="stylesheet" type="text/css" />
+    <link href="~/Resources/Metronic/assets/css/skins/aside/dark.css" rel="stylesheet" type="text/css" />
+    <link href="~/Resources/Font/font.css" rel="stylesheet" />
+    <style>
+        *{
+            font-family: IRANsans !important;
+            text-align: right;
+        }
+    </style>
+    <!--end::Layout Skins -->
+    <link rel="shortcut icon" href="~/Resources/Metronic/assets/media/logos/favicon.ico" />
+</head>
+
+<!-- end::Head -->
+<!-- begin::Body -->
+<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
+
+    <!-- begin:: Page -->
+    <div class="kt-grid kt-grid--ver kt-grid--root">
+        <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v6 kt-login--signin" id="kt_login">
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--desktop kt-grid--ver-desktop kt-grid--hor-tablet-and-mobile">
+                <div class="kt-grid__item kt-grid__item--fluid kt-grid__item--center kt-grid kt-grid--ver kt-login__content" style="background-image: url(/Resources/Metronic/assets/media/bg/bg-4.jpg);">
+                    <div class="kt-login__section">
+                        <div class="kt-login__block">
+                            <h3 class="kt-login__title">به سامانه تعامل با مشتری مگا خوش آمدید</h3>
+                            @*<div class="kt-login__desc">
+                        Lorem ipsum dolor sit amet, coectetuer adipiscing
+                        <br>elit sed diam nonummy et nibh euismod
+                    </div>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-grid__item  kt-grid__item--order-tablet-and-mobile-2  kt-grid kt-grid--hor kt-login__aside">
+                    <div class="kt-login__wrapper">
+                        <div class="kt-login__container">
+                            <div class="kt-login__body">
+                                <div class="kt-login__logo">
+                                    <a href="#">
+                                        <img src="~/Resources/Metronic/assets/media/company-logos/logo-2.png">
+                                    </a>
+                                </div>
+                                <div class="kt-login__signin">
+                                    <div class="kt-login__head">
+                                        <h3 class="kt-login__title">ورود به سامانه تعامل با مشتری مگا</h3>
+                                    </div>
+                                    <div class="kt-login__form">
+                                        @using (Html.BeginForm("login", "account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "kt-form", novalidate = "novalidate", id = "kt_login_form" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(x => x.UserName, new { placeholder = "نام کاربری", @class = "form-control", autocomplete = "off" })
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.PasswordFor(x => x.Password, new { placeholder = "رمز عبور", @class = "form-control", autocomplete = "off" })
+                                            </div>
+
+                                            <!--begin::Action-->
+                                            <div class="kt-login__actions">
+                                                @*<a href="#" class="kt-link kt-login__link-forgot">
+                                            Forgot Password ?
+                                        </a>*@
+                                                <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary" type="submit">ورود</button>
+                                            </div>
+                                            <!--end::Action-->
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end:: Page -->
+    <!-- begin::Global Config(global config for global JS sciprts) -->
+    <script>
+        var KTAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#5d78ff",
+                    "dark": "#282a3c",
+                    "light": "#ffffff",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995"
+                },
+                "base": {
+                    "label": [
+                        "#c5cbe3",
+                        "#a1a8c3",
+                        "#3d4465",
+                        "#3e4466"
+                    ],
+                    "shape": [
+                        "#f0f3ff",
+                        "#d9dffa",
+                        "#afb4d4",
+                        "#646c9a"
+                    ]
+                }
+            }
+        };
+    </script>
+
+    <!-- end::Global Config -->
+    <!--begin::Global Theme Bundle(used by all pages) -->
+    <script src="~/Resources/Metronic/assets/plugins/global/plugins.bundle.js" type="text/javascript"></script>
+    <script src="~/Resources/Metronic/assets/js/scripts.bundle.js" type="text/javascript"></script>
+
+    <!--end::Global Theme Bundle -->
+    <!--begin::Page Scripts(used by this page) -->
+    @*<script src="~/Resources/Metronic/assets/js/pages/custom/login/login-general.js" type="text/javascript"></script>*@
+
+    <!--end::Page Scripts -->
+</body>
+
+<!-- end::Body -->
+</html>
+
+
+
+
