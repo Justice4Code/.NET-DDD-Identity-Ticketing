@@ -208,7 +208,29 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Resources\CMS\Blog\Create.js" />
+    <Content Include="Resources\CMS\Blog\dt_index.js" />
+    <Content Include="Resources\CMS\Blog\Edit.js" />
+    <Content Include="Resources\CMS\Brand\Create.js" />
+    <Content Include="Resources\CMS\Brand\dt_index.js" />
+    <Content Include="Resources\CMS\Brand\Edit.js" />
+    <Content Include="Resources\CMS\Extend\Modal.js" />
+    <Content Include="Resources\CMS\Extend\Notification.js" />
+    <Content Include="Resources\CMS\Extend\Validation-extended.js" />
+    <Content Include="Resources\CMS\Log\dt_index.js" />
+    <Content Include="Resources\CMS\Products\Create.js" />
+    <Content Include="Resources\CMS\Products\dt_index.js" />
+    <Content Include="Resources\CMS\Products\dt_insertWizard.js" />
+    <Content Include="Resources\CMS\Products\Edit.js" />
+    <Content Include="Resources\CMS\Products\insertWizard.js" />
+    <Content Include="Resources\CMS\Products\TempEdit.js" />
+    <Content Include="Resources\CMS\Sale\Detail.js" />
+    <Content Include="Resources\CMS\Sale\dt_index.js" />
+    <Content Include="Resources\CMS\Slider\Create.js" />
+    <Content Include="Resources\CMS\Slider\dt_index.js" />
+    <Content Include="Resources\CMS\Slider\Edit.js" />
     <Content Include="Resources\Font\font.css" />
+    <Content Include="Resources\Images\mega.png" />
     <Content Include="Resources\Metronic\assets\css\pages\error\error-1.css" />
     <Content Include="Resources\Metronic\assets\css\pages\error\error-1.rtl.css" />
     <Content Include="Resources\Metronic\assets\css\pages\error\error-2.css" />
@@ -1768,6 +1790,8 @@
     <Content Include="Resources\Metronic\assets\plugins\global\plugins.bundle.css" />
     <Content Include="Resources\Metronic\assets\plugins\global\plugins.bundle.js" />
     <Content Include="Resources\Metronic\assets\plugins\global\plugins.bundle.rtl.css" />
+    <Content Include="Resources\Plugins\IziModal\iziModal.min.css" />
+    <Content Include="Resources\Plugins\IziModal\iziModal.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Resources\Metronic\assets\plugins\global\fonts\%40fortawesome\fa-brands-400.eot" />
@@ -1801,6 +1825,7 @@
     <Content Include="Resources\Metronic\assets\plugins\global\fonts\summernote\summernote.woff" />
     <Content Include="Resources\Metronic\assets\plugins\global\fonts\summernote\summernote.woff2" />
     <Content Include="Resources\Font\iransans.ttf" />
+    <Content Include="Resources\Font\Yekan.ttf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1850,6 +1875,11 @@
     <Content Include="Views\Shared\_PanelLayout.cshtml" />
     <Content Include="Views\Company\Create.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Home\Mobile.cshtml" />
+    <Content Include="Views\Home\AsideMenu.cshtml" />
+    <Content Include="Views\Home\Header.cshtml" />
+    <Content Include="Views\Home\Breadcrumb.cshtml" />
+    <Content Include="Views\Home\Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

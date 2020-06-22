@@ -1,0 +1,50 @@
+﻿@{
+    var breadArray = ViewBag.Breadcrumb as string[,];
+}
+@if (breadArray != null && breadArray.Length > 0)
+{
+    var lastRow = ((breadArray.Length / 2) - 1);
+    <!-- begin:: Subheader -->
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+        <div class="kt-container  kt-container--fluid ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    @breadArray[lastRow, 0]
+                </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+                <div class="kt-subheader__breadcrumbs">
+                    <a href="@breadArray[lastRow -1,1]" class="kt-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a>
+                    @for (int i = 0; i <= lastRow; i++)
+                    {
+                        <span class="kt-subheader__breadcrumbs-separator"></span>
+                        <a href="@breadArray[i,1]" class="kt-subheader__breadcrumbs-link">
+                            @breadArray[i, 0]
+                        </a>
+
+                    }
+                    <!-- <span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active">Active link</span> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end:: Subheader -->
+}
+else
+{
+    <!-- begin:: Subheader -->
+    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+        <div class="kt-container  kt-container--fluid ">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    مدیریت سامانه تیکتینگ
+                </h3>
+                <span class="kt-subheader__separator kt-hidden"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- end:: Subheader -->
+}
+
+

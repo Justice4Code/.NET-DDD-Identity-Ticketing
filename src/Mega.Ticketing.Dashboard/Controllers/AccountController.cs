@@ -54,17 +54,6 @@ namespace Mega.Ticketing.Dashboard.Controllers
             }
         }
 
-        //private readonly UserManager<ApplicationUser> _userManager;
-
-        //private readonly RoleManager<IdentityRole> _roleManager;
-
-        //public AccountController(IUserStore<ApplicationUser> userStore, IRoleStore<IdentityRole> roleStore)
-        //{
-        //    _userManager = new UserManager<ApplicationUser>(userStore);
-        //    _roleManager = new RoleManager<IdentityRole>(roleStore);
-        //}
-
-        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)

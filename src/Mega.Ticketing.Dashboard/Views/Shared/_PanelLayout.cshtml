@@ -10,19 +10,19 @@
 }
 <!-- END CSS Render -->
 <!-- Load Partial Modules for Body-->
-@Html.Action("Mobile", "Units")
+@Html.Action("Mobile", "Home")
 <div class="kt-grid kt-grid--hor kt-grid--root">
     <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
-        @Html.Action("AsideMenu", "Units")
+        @Html.Action("AsideMenu", "Home")
         <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
-            @Html.Action("Header", "Units")
+            @Html.Action("Header", "Home")
             <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
-                @Html.Action("Breadcrumb", "Units", new { breadcrumb = ViewBag.Breadcrumb })
+                @Html.Action("Breadcrumb", "Home", new { breadcrumb = ViewBag.Breadcrumb })
                 <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
                     @RenderBody()
                 </div>
             </div>
-            @Html.Action("Footer", "Units")
+            @Html.Action("Footer", "Home")
         </div>
     </div>
 </div>

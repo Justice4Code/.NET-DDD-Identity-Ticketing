@@ -2,3 +2,7 @@
     font-family: IRANsans;
     src: url(iransans.ttf);
 }
+@font-face {
+    font-family: FaBYekan;
+    src: url(Yekan.ttf);
+}
