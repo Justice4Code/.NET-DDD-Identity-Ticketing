@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <!--begin::Page Custom Styles(used by this page) -->
+    <link href="~/Resources/Metronic/assets/css/pages/wizard/wizard-2.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Resources/Font/font-awesome-4.4.0/css/font-awesome.min.css" />
+
+    <!--end::Page Custom Styles -->
+}
+
+@model Mega.Ticketing.Domain.Entities.Company
+<style>
+    .filter-option-inner-inner {
+        text-align: right !important;
+    }
+</style>
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                ویرایش نمودن مقاله
+            </h3>
+        </div>
+    </div>
+    <!--begin::Form-->
+    @using (Html.BeginForm("Edit", "Company", FormMethod.Post, new { id = "cform", @class = "kt-form" }))
+    {
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.ModifiedBy)
+        @Html.HiddenFor(x => x.ModifiedDate)
+        @Html.HiddenFor(x => x.CreatedBy)
+        @Html.HiddenFor(x => x.CreatedDate)
+        @Html.HiddenFor(x => x.RowVersion)
+
+        <div class="kt-portlet__body">
+            <div class="row">
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>عنوان شرکت</label>
+                        @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group" style="margin-top: 30px;">
+                        <label>فعال باشد؟</label>
+                        @Html.EditorFor(x => x.IsActive)
+                    </div>
+                </div>
+            </div>
+            @Html.Partial("_Information")
+        </div>
+        <div class="kt-portlet__foot">
+            <div class="kt-form__actions">
+                <button type="submit" class="btn btn-primary">ثبت</button>
+                <button type="button" class="btn btn-danger" id="btnClose">انصراف</button>
+            </div>
+        </div>
+
+    }
+    <!--end::Form-->
+</div>
+
+
+@section Scripts{
+    <!--begin::Page Scripts(used by this page) -->
+
+    <script src="~/Resources/CMS/Extend/validation-extended.js"></script>
+    <script src="~/Resources/CMS/Extend/Notification.js"></script>
+    <script src="~/Resources/CMS/Company/edit.js"></script>
+
+    <!--end::Page Scripts -->
+}
+
+

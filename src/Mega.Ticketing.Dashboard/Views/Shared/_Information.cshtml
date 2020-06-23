@@ -1,0 +1,42 @@
+﻿@model Mega.Ticketing.Domain.Entities.BaseEntity<Guid>
+
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-xl-4 col-sm-4">
+            <div class="form-group">
+                <label>شناسه</label>
+                @Html.TextBoxFor(x => x.Id, new { @class = "form-control", disabled = "disabled" })
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-4">
+            <div class="form-group">
+                <label>فرد سازنده</label>
+                @Html.TextBoxFor(x => x.CreatedBy, new { @class = "form-control", disabled = "disabled" })
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-4">
+            <div class="form-group">
+                <label>تاریخ درج</label>
+                @Html.TextBoxFor(x => x.CreatedDate, new { @class = "form-control", disabled = "disabled" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-6 col-sm-6">
+            <div class="form-group">
+                <label>آخرین فرد تغییر دهنده</label>
+                @Html.TextBoxFor(x => x.ModifiedBy, new { @class = "form-control", disabled = "disabled" })
+            </div>
+        </div>
+        <div class="col-xl-6 col-sm-6">
+            <div class="form-group">
+                <label>تاریخ تغییر</label>
+                @Html.TextBoxFor(x => x.ModifiedDate, new { @class = "form-control", disabled = "disabled" })
+            </div>
+        </div>
+
+    </div>
+
+
+}

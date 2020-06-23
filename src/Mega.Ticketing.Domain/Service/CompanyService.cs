@@ -36,7 +36,12 @@ namespace Mega.Ticketing.Domain.Service
         /// <param name="id"></param>
         /// <param name="type"></param>
         /// <returns>an object of response class</returns>
-        Response Delete(Guid id, bool type = true);
+        Response Delete(Guid id);
+        /// <summary>
+        /// this method will add a single company entity
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         Response Insert(Company dto);
     }
 
@@ -49,9 +54,26 @@ namespace Mega.Ticketing.Domain.Service
             _context = context;
         }
 
-        public Response Delete(Guid id, bool type = true)
+        public Response Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var ProcessResponse = new Response<List<Company>>();
+            try
+            {
+                var ret = _context.Companies.Get(id);
+                if (ret != null)
+                {
+                    var response = _context.Companies.SoftDelete(ret);
+                    if (!response)
+                        ProcessResponse.Failed("DAL Problem");
+                }
+                else
+                    ProcessResponse.Failed("DAL Problem");
+            }
+            catch (Exception ex)
+            {
+                ProcessResponse.Failed($"Error : {ex.Message} - Inner Error : {ex.InnerException.Message }");
+            }
+            return ProcessResponse;
         }
 
         public Response<List<Company>> GetAll()

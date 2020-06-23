@@ -208,27 +208,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Resources\CMS\Blog\Create.js" />
-    <Content Include="Resources\CMS\Blog\dt_index.js" />
-    <Content Include="Resources\CMS\Blog\Edit.js" />
-    <Content Include="Resources\CMS\Brand\Create.js" />
-    <Content Include="Resources\CMS\Brand\dt_index.js" />
-    <Content Include="Resources\CMS\Brand\Edit.js" />
+    <Content Include="Resources\CMS\Company\Create.js" />
+    <Content Include="Resources\CMS\Company\dt_index.js" />
+    <Content Include="Resources\CMS\Company\Edit.js" />
     <Content Include="Resources\CMS\Extend\Modal.js" />
     <Content Include="Resources\CMS\Extend\Notification.js" />
+    <Content Include="Resources\CMS\Extend\tto.components.js" />
+    <Content Include="Resources\CMS\Extend\tto.core.js" />
     <Content Include="Resources\CMS\Extend\Validation-extended.js" />
-    <Content Include="Resources\CMS\Log\dt_index.js" />
-    <Content Include="Resources\CMS\Products\Create.js" />
-    <Content Include="Resources\CMS\Products\dt_index.js" />
-    <Content Include="Resources\CMS\Products\dt_insertWizard.js" />
-    <Content Include="Resources\CMS\Products\Edit.js" />
-    <Content Include="Resources\CMS\Products\insertWizard.js" />
-    <Content Include="Resources\CMS\Products\TempEdit.js" />
-    <Content Include="Resources\CMS\Sale\Detail.js" />
-    <Content Include="Resources\CMS\Sale\dt_index.js" />
-    <Content Include="Resources\CMS\Slider\Create.js" />
-    <Content Include="Resources\CMS\Slider\dt_index.js" />
-    <Content Include="Resources\CMS\Slider\Edit.js" />
     <Content Include="Resources\Font\font.css" />
     <Content Include="Resources\Images\mega.png" />
     <Content Include="Resources\Metronic\assets\css\pages\error\error-1.css" />
@@ -1880,6 +1867,8 @@
     <Content Include="Views\Home\Header.cshtml" />
     <Content Include="Views\Home\Breadcrumb.cshtml" />
     <Content Include="Views\Home\Footer.cshtml" />
+    <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Shared\_Information.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
