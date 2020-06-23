@@ -65,6 +65,7 @@ namespace Mega.Ticketing.Domain.Service
                     var response = _context.Companies.SoftDelete(ret);
                     if (!response)
                         ProcessResponse.Failed("DAL Problem");
+                    _context.Commit();
                 }
                 else
                     ProcessResponse.Failed("DAL Problem");
@@ -81,7 +82,7 @@ namespace Mega.Ticketing.Domain.Service
             var ProcessResponse = new Response<List<Company>>();
             try
             {
-                var ret = _context.Companies.Get();
+                var ret = _context.Companies.Get(x => x.IsActive == true);
                 if (ret != null)
                     ProcessResponse.Result = ret.ToList();
                 else

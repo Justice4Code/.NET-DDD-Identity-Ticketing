@@ -46,7 +46,6 @@ namespace Mega.Ticketing.Presistance.Data
             entity.ModifiedDate = _now;
             entity.CreatedDate = old.CreatedDate;
             entity.CreatedBy = old.CreatedBy;
-            entity.IsActive = old.IsActive;
 
             _context.Entry(entity).State = EntityState.Modified;
 
