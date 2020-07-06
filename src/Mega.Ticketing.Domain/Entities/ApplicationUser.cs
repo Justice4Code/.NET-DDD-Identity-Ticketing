@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -14,6 +15,8 @@ namespace Mega.Ticketing.Domain.Entities
         public string VirtualName { get; set; }
         public Guid? CompanyId { get; set; }
         public DateTime CreatedDate { get; set; }
+        [NotMapped]
+        public string Password { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

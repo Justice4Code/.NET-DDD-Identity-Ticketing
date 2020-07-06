@@ -7,6 +7,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Mega.Ticketing.Dashboard.Models;
+using System.Data.Entity;
+using Mega.Ticketing.Presistance.Core;
+using Mega.Ticketing.Domain.Entities;
 
 namespace Mega.Ticketing.Dashboard.Controllers
 {
@@ -32,9 +35,9 @@ namespace Mega.Ticketing.Dashboard.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -50,9 +53,123 @@ namespace Mega.Ticketing.Dashboard.Controllers
             }
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Create()
+        {
+            return View();
+        }
+        public ActionResult Edit(string id)
+        {
+            using (var db = new IdentityTicketingDbContext())
+            {
+                var user = db.Users.FirstOrDefault(x => x.Id == id);
+                return View(user);
+            }
+            //var ret = _userManager.FindById(id);
+            //return View(ret);
+        }
+
+        #region Data
+        public ActionResult IndexData()
+        {
+            using (var db = new IdentityTicketingDbContext())
+            {
+                var data = db.Users.Include(x => x.Company).ToList();
+                if (data != null && data.Count > 0)
+                    return Json(data, JsonRequestBehavior.AllowGet);
+                return Json(new { }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region Ajax
+
+        [HttpPost]
+        public ActionResult AjaxCreate(ApplicationUser dto)
+        {
+            var processResponse = new Response();
+            try
+            {
+                int row = 0;
+                using (var db = new IdentityTicketingDbContext())
+                {
+                    db.Users.Add(dto);
+                    row = db.SaveChanges();
+                }
+
+                if (row > 0)
+                    return Json(new { Result = "Ok", JsonRequestBehavior.AllowGet });
+                processResponse.Failed($"Message : DAL Problem");
+                return Json(new { Error = $"IsSuccess = {false} | Error = DAL Problem" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                processResponse.Failed($"Message : {ex.Message} - InnerException Message: { ex.InnerException.Message }");
+                return Json(new { Error = $"IsSuccess = {false} | Error = {ex.Message}" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpPost]
+        public ActionResult AjaxEdit(ApplicationUser dto)
+        {
+            var processResponse = new Response();
+            try
+            {
+                int row = 0;
+                using (var db = new IdentityTicketingDbContext())
+                {
+                    var entity = db.Users.Find(dto.Id);
+
+                    entity.FirstName = dto.FirstName;
+                    entity.LastName = dto.LastName;
+                    entity.UserName = dto.UserName;
+                    entity.PasswordHash = new PasswordHasher().HashPassword(dto.Password);
+                    entity.VirtualName = dto.VirtualName;
+                    entity.Email = dto.Email;
+                    entity.PhoneNumber = dto.PhoneNumber;
+                    entity.CompanyId = dto.CompanyId;
+
+                    db.Entry(entity).State = EntityState.Modified;
+                    row = db.SaveChanges();
+                }
+                if (row > 0)
+                    return Json(new { Result = "Ok", JsonRequestBehavior.AllowGet });
+                processResponse.Failed($"Message : DAL Problem");
+                return Json(new { Error = $"IsSuccess = {false} | Error = DAL Problem" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                processResponse.Failed($"Message : {ex.Message} - InnerException Message: { ex.InnerException.Message }");
+                return Json(new { Error = $"IsSuccess = {false} | Error = {ex.Message}" }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        [HttpPost]
+        public ActionResult AjaxDelete(string id)
+        {
+            var processResponse = new Response();
+            try
+            {
+                var response = _userManager.Delete(_userManager.FindById(id));
+
+                if (response.Succeeded)
+                    return Json(new { Result = "Ok", JsonRequestBehavior.AllowGet });
+                processResponse.Failed($"Message : {response.Errors}");
+                return Json(new { Error = $"IsSuccess = {response.Succeeded} | Error = {response.Errors}" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                processResponse.Failed($"Message : {ex.Message} - InnerException Message: { ex.InnerException.Message }");
+                return Json(new { Error = $"IsSuccess = {false} | Error = {ex.Message}" }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        #endregion
         //
         // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        public async Task<ActionResult> Preimer(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -333,7 +450,7 @@ namespace Mega.Ticketing.Dashboard.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -384,6 +501,6 @@ namespace Mega.Ticketing.Dashboard.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

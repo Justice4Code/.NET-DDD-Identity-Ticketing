@@ -11,22 +11,27 @@ namespace Mega.Ticketing.Dashboard.Controllers
         }
         public ActionResult Mobile()
         {
-            return View(); 
+            return View();
         }
         public ActionResult AsideMenu()
         {
-            return View(); 
+            return View();
         }
         public ActionResult Header()
         {
-            return View(); 
+            return View();
         }
         public ActionResult Breadcrumb(string[,] breadcrumb)
         {
             ViewBag.Breadcrumb = breadcrumb;
-            return View(); 
+            return View();
         }
         public ActionResult Footer()
+        {
+            return View();
+        }
+
+        public ActionResult Cartables()
         {
             return View();
         }

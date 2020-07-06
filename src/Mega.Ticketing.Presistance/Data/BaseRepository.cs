@@ -302,5 +302,28 @@ namespace Mega.Ticketing.Presistance.Data
 
             return paginatedResult;
         }
+
+        public virtual T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = _dbSet;
+
+            foreach (Expression<Func<T, object>> include in includes)
+                query = query.Include(include);
+
+            return query.FirstOrDefault(filter);
+        }
+
+        public ICollection<T> Get(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = _dbSet;
+
+            foreach (Expression<Func<T, object>> include in includes)
+                query = query.Include(include);
+
+            if (filter != null)
+                query = query.Where(filter);
+
+            return query.ToList(); 
+        }
     }
 }

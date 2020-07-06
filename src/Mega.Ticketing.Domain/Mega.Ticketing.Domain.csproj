@@ -99,7 +99,10 @@
     <Compile Include="Interface\IUnitOfWork.cs" />
     <Compile Include="ITicketingContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CartableService.cs" />
+    <Compile Include="Service\CategoryService.cs" />
     <Compile Include="Service\CompanyService.cs" />
+    <Compile Include="Service\TicketService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

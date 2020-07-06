@@ -34,7 +34,7 @@ namespace Mega.Ticketing.Dashboard.Controllers
         #region Ajax
 
         [HttpPost]
-        public ActionResult AjaxCreate(Company dto)
+        public ActionResult AjaxCreate(Company dto) 
         {
             var processResponse = new Response();
             try

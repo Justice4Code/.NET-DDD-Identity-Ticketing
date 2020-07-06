@@ -188,9 +188,12 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartableController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PartialsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,6 +219,9 @@
     <Content Include="Resources\CMS\Extend\tto.components.js" />
     <Content Include="Resources\CMS\Extend\tto.core.js" />
     <Content Include="Resources\CMS\Extend\Validation-extended.js" />
+    <Content Include="Resources\CMS\Users\Create.js" />
+    <Content Include="Resources\CMS\Users\dt_index.js" />
+    <Content Include="Resources\CMS\Users\Edit.js" />
     <Content Include="Resources\Font\font.css" />
     <Content Include="Resources\Images\mega.png" />
     <Content Include="Resources\Metronic\assets\css\pages\error\error-1.css" />
@@ -1869,9 +1875,16 @@
     <Content Include="Views\Home\Footer.cshtml" />
     <Content Include="Views\Company\Edit.cshtml" />
     <Content Include="Views\Shared\_Information.cshtml" />
+    <Content Include="Views\Manage\Create.cshtml" />
+    <Content Include="Views\Manage\Edit.cshtml" />
+    <Content Include="Views\Partials\Companies.cshtml" />
+    <Content Include="Views\Home\Cartables.cshtml" />
+    <Content Include="Views\Partials\Cartables.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Cartable\" />
+    <Folder Include="Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

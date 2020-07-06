@@ -4,8 +4,8 @@
 var productDataTable = function () {
 	// Private functions
 
-	// Company initializer
-	var Company = function () {
+	// Users initializer
+	var Users = function () {
 
 
 		var datatable = $('.kt-datatable').KTDatatable({
@@ -14,7 +14,7 @@ var productDataTable = function () {
 				type: 'remote',
 				source: {
 					read: {
-						url: "/Company/IndexData",
+						url: "/Manage/IndexData",
 						map: function (raw) {
 							var dataSet = raw;
 							if (typeof raw.data !== 'undefined') {
@@ -55,48 +55,60 @@ var productDataTable = function () {
 			// columns definition
 			columns: [
 				{
-					field: 'ID',
+					field: 'Id',
 					title: '#',
 					sortable: false,
 					visible: false,
 				}, {
-					field: 'Title',
-					title: 'عنوان شرکت',
+					field: 'UserName',
+					title: 'نام کاربری',
 					template: function (row) {
-						if (row.Title) {
-							return row.Title;
+						if (row.UserName) {
+							return row.UserName;
 						} else {
 							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">بدون عنوان </span>';
 						}
 					}
 				}, {
-					field: 'CreatedDate',
-					title: 'تاریخ درج',
+					field: 'FirstName',
+					title: 'اسم',
 					template: function (row) {
-						if (row.CreatedDate) {
-							let output = "";
-							let milli = row.CreatedDate.replace(/\/Date\((-?\d+)\)\//, '$1');
-							let date = new Date(parseInt(milli));
-							let m = moment(date);
-							m.locale('fa');
-							output = m.format('ddd') + ' ' + m.format("YYYY/MMMM/DD");
-
-							return output;
+						if (row.FirstName) {
+							return row.FirstName;
 						} else {
-							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">بدون تاریخ</span>';
+							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">بدون عنوان </span>';
 						}
 					}
 				}, {
-					field: 'IsActive',
-					title: 'وضعیت',
-					// callback function support for column rendering
+					field: 'LastName',
+					title: 'نام خانوادگی',
 					template: function (row) {
-						var status = {
-							true: { 'title': 'فعال', 'class': ' kt-badge--success' },
-							false: { 'title': 'غیر فعال', 'class': ' kt-badge--danger' },
-						};
-						return '<span class="kt-badge ' + status[row.IsActive].class + ' kt-badge--inline kt-badge--pill">' + status[row.IsActive].title + '</span>';
-					},
+						if (row.LastName) {
+							return row.LastName;
+						} else {
+							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">بدون عنوان </span>';
+						}
+					}
+				}, {
+					field: 'VirtualName',
+					title: 'نام پشتیبانی',
+					template: function (row) {
+						if (row.VirtualName) {
+							return row.VirtualName;
+						} else {
+							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">بدون عنوان </span>';
+						}
+					}
+				}, {
+					field: 'Company',
+					title: 'عنوان شرکت',
+					template: function (row) {
+						if (row.Company) {
+							return row.Company.Title;
+						} else {
+							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">بدون عنوان </span>';
+						}
+					}
 				}, {
 					field: 'Actions',
 					title: 'عملیات',
@@ -106,10 +118,10 @@ var productDataTable = function () {
 					autoHide: false,
 					template: function (data, i) {
 						return '\
-						<a href="javascript:;" class="btn btn-sm btn-clean btn-icon btn-icon-md Company-edit" title="ویرایش" data-id="'+ data.Id + '">\
+						<a href="javascript:;" class="btn btn-sm btn-clean btn-icon btn-icon-md Users-edit" title="ویرایش" data-id="'+ data.Id + '">\
 							<i class="la la-edit"></i>\
 						</a>\
-						<a href="javascript:;" class="btn btn-sm btn-clean btn-icon btn-icon-md Company-delete" title="حذف" data-id="'+ data.Id + '">\
+						<a href="javascript:;" class="btn btn-sm btn-clean btn-icon btn-icon-md Users-delete" title="حذف" data-id="'+ data.Id + '">\
 							<i class="la la-trash"></i>\
 						</a>\
 					';
@@ -145,22 +157,22 @@ var productDataTable = function () {
 	return {
 		// Public functions
 		init: function () {
-			// init Company
-			Company();
+			// init Users
+			Users();
 		},
 	};
 }();
 
 jQuery(document).ready(function () {
 	productDataTable.init();
-	$(document).on('click', '#createCompany', function () {
-		MegaYadakModal.inst.Modal('#create', '/Company/Create', 900, 400, false);
+	$(document).on('click', '#createUsers', function () {
+		MegaYadakModal.inst.Modal('#create', '/Manage/Create', 900, 400, false);
 	});
-	$(document).on('click', '.Company-edit', function () {
+	$(document).on('click', '.Users-edit', function () {
 		var id = $(this).attr('data-id');
-		MegaYadakModal.inst.Modal('#edit', `/Company/Edit/${id}`, 900, 400, false);
+		MegaYadakModal.inst.Modal('#edit', `/Manage/Edit/${id}`, 900, 400, false);
 	});
-	$(document).on('click', '.Company-delete', function () {
+	$(document).on('click', '.Users-delete', function () {
 		var id = $(this).attr('data-id');
 		Swal.fire({
 			title: 'آیا شما درخواست این مورد را داده اید؟',
@@ -174,7 +186,7 @@ jQuery(document).ready(function () {
 		}).then((result) => {
 			if (result.value) {
 				$.ajax({
-					url: "/Company/AjaxDelete?id=" + id,
+					url: "/Manage/AjaxDelete?id=" + id,
 					method: "POST",
 					success: function (data) {
 						//trigger

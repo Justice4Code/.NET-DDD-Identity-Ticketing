@@ -59,7 +59,6 @@ namespace Mega.Ticketing.Dashboard
             container.RegisterType<ManageController>(new InjectionConstructor());
 
 
-
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<ITicketingContext, TicketingContext>();
             container.RegisterType<IAccessoryRepository, AccessoryRepository>();

@@ -22,7 +22,6 @@ namespace Mega.Ticketing.Presistance.Configuration
             Property(row => row.LockoutEnabled).IsOptional();
             Property(row => row.AccessFailedCount).IsOptional();
 
-
             //One to many relation between ApplicationUser(many) and Company(one) Optional 
             HasOptional(row => row.Company).WithMany(row => row.Users).HasForeignKey(row => row.CompanyId);
         }

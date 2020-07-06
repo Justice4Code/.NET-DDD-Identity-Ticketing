@@ -27,6 +27,7 @@ namespace Mega.Ticketing.Domain.Interface
         ICollection<T> Get();
         T Get(TU id);
         ICollection<T> Get(Expression<Func<T, bool>> where);
+        ICollection<T> Get(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] includes);
         Task<T> GetAsync(TU id, CancellationToken ct = default);
         Task<ICollection<T>> GetAsync(Expression<Func<T, bool>> where, CancellationToken ct = default);
         Task<ICollection<T>> GetAsync(CancellationToken ct = default);
@@ -43,6 +44,6 @@ namespace Mega.Ticketing.Domain.Interface
         T Update(T entity);
         Task<T> UpdateAsync(T entity, CancellationToken ct = default);
         bool IsExists(Expression<Func<T, bool>> where);
-
+        T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] includes);
     }
 }

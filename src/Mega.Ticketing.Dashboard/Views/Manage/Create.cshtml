@@ -1,0 +1,115 @@
+﻿@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <!--begin::Page Custom Styles(used by this page) -->
+    <link href="~/Resources/Metronic/assets/css/pages/wizard/wizard-2.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Resources/Font/font-awesome-4.4.0/css/font-awesome.min.css" />
+
+    <!--end::Page Custom Styles -->
+}
+
+@model Mega.Ticketing.Domain.Entities.ApplicationUser
+<style>
+    .filter-option-inner-inner {
+        text-align: right !important;
+    }
+</style>
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                اضافه نمودن کاربر
+            </h3>
+        </div>
+    </div>
+    <!--begin::Form-->
+    @using (Html.BeginForm("Create", "Manage", FormMethod.Post, new { id = "cform", @class = "kt-form" }))
+    {
+        <div class="kt-portlet__body">
+            <div class="row">
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>نام کاربری</label>
+                        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>کلمه عبرر</label>
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>نام</label>
+                        @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>نام خانوادگی</label>
+                        @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>نام پشتیبانی</label>
+                        @Html.TextBoxFor(x => x.VirtualName, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>ایمیل</label>
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>شماره همراه</label>
+                        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>عضویت در شرکت</label>
+                        @Html.Action("Companies", "Partials", new
+                       {
+                           area = "CMS",
+                           selectedId = Model != null ? Model.CompanyId : Guid.Empty,
+                           name = "CompanyId",
+                           cssClass = "kt-selectpicker"
+                       })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-portlet__foot">
+            <div class="kt-form__actions">
+                <button type="submit" class="btn btn-primary">ثبت</button>
+                <button type="button" class="btn btn-danger" id="btnClose">انصراف</button>
+            </div>
+        </div>
+
+    }
+    <!--end::Form-->
+</div>
+
+
+@section Scripts{
+    <!--begin::Page Scripts(used by this page) -->
+
+    <script src="~/Resources/CMS/Extend/validation-extended.js"></script>
+    <script src="~/Resources/CMS/Extend/Notification.js"></script>
+    <script src="~/Resources/CMS/Users/Create.js"></script>
+
+    <!--end::Page Scripts -->
+}
+
+
