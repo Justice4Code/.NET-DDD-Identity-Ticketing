@@ -88,3 +88,33 @@ C:\Users\WIN 10\Desktop\DDD Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticke
 C:\Users\WIN 10\Desktop\DDD Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\obj\Debug\Mega.Ticketing.Domain.csproj.CopyComplete
 C:\Users\WIN 10\Desktop\DDD Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\obj\Debug\Mega.Ticketing.Domain.dll
 C:\Users\WIN 10\Desktop\DDD Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\obj\Debug\Mega.Ticketing.Domain.pdb
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Mega.Ticketing.Domain.dll.config
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Mega.Ticketing.Domain.dll
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Mega.Ticketing.Domain.pdb
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\EntityFramework.dll
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\EntityFramework.SqlServer.dll
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Microsoft.Owin.dll
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Microsoft.Owin.Security.Cookies.dll
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Microsoft.Owin.Security.dll
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Microsoft.Owin.Security.OAuth.dll
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Newtonsoft.Json.dll
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Owin.dll
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\PagedList.dll
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\EntityFramework.xml
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\EntityFramework.SqlServer.xml
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Microsoft.Owin.xml
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Microsoft.Owin.Security.xml
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Microsoft.Owin.Security.Cookies.xml
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Microsoft.Owin.Security.OAuth.xml
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\Newtonsoft.Json.xml
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\bin\Debug\PagedList.xml
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\obj\Debug\Mega.Ticketing.Domain.csprojAssemblyReference.cache
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\obj\Debug\Mega.Ticketing.Domain.csproj.CopyComplete
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\obj\Debug\Mega.Ticketing.Domain.dll
+F:\Applications\DDD-Ticketing\.NET-DDD-Identity-Ticketing\src\Mega.Ticketing.Domain\obj\Debug\Mega.Ticketing.Domain.pdb

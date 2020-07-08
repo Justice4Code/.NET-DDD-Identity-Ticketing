@@ -8,6 +8,7 @@ using Mega.Ticketing.Domain.Service;
 
 namespace Mega.Ticketing.Dashboard.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _service;

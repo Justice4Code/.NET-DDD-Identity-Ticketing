@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Mega.Ticketing.Dashboard.Controllers
 {
+    [Authorize]
     public class PartialsController : Controller
     {
         #region Constructors

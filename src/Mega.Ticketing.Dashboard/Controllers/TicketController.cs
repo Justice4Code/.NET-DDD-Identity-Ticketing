@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Mega.Ticketing.Dashboard.Controllers
 {
+    [Authorize]
     public class TicketController : Controller
     {
         private readonly ITicketService _ticketService;

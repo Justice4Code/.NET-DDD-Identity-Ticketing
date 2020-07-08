@@ -4,24 +4,25 @@ using Mega.Ticketing.Presistance.Migirations;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Configuration;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Mega.Ticketing.Presistance.Core
 {
     /// <summary>
     /// Application DbContext class it is inherited from Identity DbContext based on ApplicationUser For ASP.NET Identity
     /// </summary>
-    public class TicketingDbContext : IdentityDbContext<ApplicationUser>
+    public class TicketingDbContext : IdentityDbContext
     {
         public TicketingDbContext() : base("Ticketing")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TicketingDbContext, Migrations>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<TicketingDbContext, Migrations>());
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;
         }
 
         public TicketingDbContext(string connectionString) : base(connectionString)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TicketingDbContext, Migrations>());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<TicketingDbContext, Migrations>());
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;
         }
