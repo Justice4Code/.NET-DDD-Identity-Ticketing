@@ -1,10 +1,19 @@
-﻿using System.Web.Mvc;
+﻿using Mega.Ticketing.Domain.Entities;
+using Mega.Ticketing.Domain.Service;
+using Mega.Ticketing.Presistance.Core;
+using Microsoft.AspNet.Identity;
+using System.Web.Mvc;
 
 namespace Mega.Ticketing.Dashboard.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
+        private readonly ICartableService _cartableService;
+        public HomeController(ICartableService cartableService)
+        {
+            _cartableService = cartableService;
+        }
         public ActionResult Index()
         {
             return View();
@@ -33,6 +42,20 @@ namespace Mega.Ticketing.Dashboard.Controllers
 
         public ActionResult Cartables()
         {
+            var userId = User.Identity.GetUserId();
+            var currentUser = new ApplicationUser();
+            using (var db = new IdentityTicketingDbContext())
+            {
+                currentUser = db.Users.Find(userId);
+            }
+            if (currentUser != null && currentUser.CompanyId.HasValue)
+            {
+                var response = _cartableService.GetAll(currentUser.CompanyId.Value);
+                if (response.IsSuccessful)
+                    return View(response.Result);
+                return View();
+
+            }
             return View();
         }
     }

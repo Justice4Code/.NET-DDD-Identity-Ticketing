@@ -52,7 +52,7 @@ namespace Mega.Ticketing.Domain.Service
         }
         public Response Delete(Guid id)
         {
-            var ProcessResponse = new Response<List<Cartable>>();
+            var ProcessResponse = new Response();
             try
             {
                 var ret = _context.Cartables.Get(id);
@@ -78,7 +78,7 @@ namespace Mega.Ticketing.Domain.Service
             var ProcessResponse = new Response<List<Cartable>>();
             try
             {
-                var ret = _context.Cartables.Get(x => x.IsActive == true);
+                var ret = _context.Cartables.Get(x => x.IsActive == true, includes: x => x.Company);
                 if (ret != null)
                     ProcessResponse.Result = ret.ToList();
                 else
@@ -154,7 +154,6 @@ namespace Mega.Ticketing.Domain.Service
                 ProcessResponse.Failed($"Error : {ex.Message} - Inner Error : {ex.InnerException.Message }");
             }
             return ProcessResponse;
-
         }
     }
 }

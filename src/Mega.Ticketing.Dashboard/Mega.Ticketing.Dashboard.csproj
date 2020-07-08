@@ -194,6 +194,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PartialsController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,6 +212,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Resources\CMS\Cartable\dt_index.js" />
+    <Content Include="Resources\CMS\Category\dt_index.js" />
     <Content Include="Resources\CMS\Company\Create.js" />
     <Content Include="Resources\CMS\Company\dt_index.js" />
     <Content Include="Resources\CMS\Company\Edit.js" />
@@ -219,6 +222,7 @@
     <Content Include="Resources\CMS\Extend\tto.components.js" />
     <Content Include="Resources\CMS\Extend\tto.core.js" />
     <Content Include="Resources\CMS\Extend\Validation-extended.js" />
+    <Content Include="Resources\CMS\Ticket\dt_index.js" />
     <Content Include="Resources\CMS\Users\Create.js" />
     <Content Include="Resources\CMS\Users\dt_index.js" />
     <Content Include="Resources\CMS\Users\Edit.js" />
@@ -1880,11 +1884,17 @@
     <Content Include="Views\Partials\Companies.cshtml" />
     <Content Include="Views\Home\Cartables.cshtml" />
     <Content Include="Views\Partials\Cartables.cshtml" />
+    <Content Include="Views\Cartable\Index.cshtml" />
+    <Content Include="Views\Cartable\Create.cshtml" />
+    <Content Include="Views\Cartable\Edit.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Ticket\Index.cshtml" />
+    <Content Include="Views\Ticket\Reply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Cartable\" />
-    <Folder Include="Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,0 +1,107 @@
+﻿@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <!--begin::Page Custom Styles(used by this page) -->
+    <link href="~/Resources/Metronic/assets/css/pages/wizard/wizard-2.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Resources/Font/font-awesome-4.4.0/css/font-awesome.min.css" />
+
+    <!--end::Page Custom Styles -->
+}
+
+@model Mega.Ticketing.Domain.Entities.Cartable
+<style>
+    .filter-option-inner-inner {
+        text-align: right !important;
+    }
+</style>
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                اضافه نمودن کارتابل
+            </h3>
+        </div>
+    </div>
+    <!--begin::Form-->
+    @using (Html.BeginForm("Create", "Cartable", FormMethod.Post, new { id = "cform", @class = "kt-form" }))
+    {
+        <div class="kt-portlet__body">
+            <div class="row">
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>عنوان کارتابل</label>
+                        @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>کارتابل اصلی</label>
+                        @Html.EditorFor(x => x.IsDefault, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>کارتابل برای شرکت</label>
+                        @Html.Action("Companies", "Partials", new
+                       {
+                           area = "CMS",
+                           selectedId = Model != null ? Model.CompanyId : Guid.Empty,
+                           name = "CompanyId",
+                           cssClass = "kt-selectpicker"
+                       })
+                    </div>
+                </div>
+            </div>
+            @Html.Partial("_Information")
+        </div>
+        <div class="kt-portlet__foot">
+            <div class="kt-form__actions">
+                <button type="submit" class="btn btn-primary">ثبت</button>
+                <button type="button" class="btn btn-danger" id="btnClose">انصراف</button>
+            </div>
+        </div>
+
+    }
+    <!--end::Form-->
+</div>
+
+
+@section Scripts{
+    <!--begin::Page Scripts(used by this page) -->
+
+    <script src="~/Resources/CMS/Extend/validation-extended.js"></script>
+    <script src="~/Resources/CMS/Extend/Notification.js"></script>
+    <script>
+        $(".kt-selectpicker").attr("data-live-search", "true");
+        $(".kt-selectpicker").attr("data-size", "5")
+        $('.kt-selectpicker').selectpicker();
+
+        //close modal
+        $(document).on('click', '#btnClose', function () {
+            MegaYadakModal.inst.CloseModal("#edit");
+        });
+    </script>
+    @*<script src="~/Resources/CMS/Products/Edit.js"></script>*@
+    @if (ViewBag.Success == true)
+    {
+        <script>
+            tto.success("موفقیت", "درخواست شما با موفقیت انجام شده است.");
+
+        </script>
+    }
+    else if (ViewBag.Success == false)
+    {
+        <script>
+            tto.alert("هشدار", "مشکلی در ارسال دیده شد. لطفا بررسی نمایید.");
+
+        </script>
+    }
+
+    <!--end::Page Scripts -->
+}
+
+
+

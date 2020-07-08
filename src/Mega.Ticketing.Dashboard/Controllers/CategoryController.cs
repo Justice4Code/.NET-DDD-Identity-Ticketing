@@ -62,7 +62,6 @@ namespace Mega.Ticketing.Dashboard.Controllers
                 ViewBag.Success = false;
             }
             return View();
-
         }
 
         #region Data

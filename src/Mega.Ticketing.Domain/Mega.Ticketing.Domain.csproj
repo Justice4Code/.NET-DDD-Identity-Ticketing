@@ -102,6 +102,7 @@
     <Compile Include="Service\CartableService.cs" />
     <Compile Include="Service\CategoryService.cs" />
     <Compile Include="Service\CompanyService.cs" />
+    <Compile Include="Service\ConversationService.cs" />
     <Compile Include="Service\TicketService.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -56,7 +56,7 @@ namespace Mega.Ticketing.Domain.Service
 
         public Response Delete(Guid id)
         {
-            var ProcessResponse = new Response<List<Company>>();
+            var ProcessResponse = new Response();
             try
             {
                 var ret = _context.Companies.Get(id);
