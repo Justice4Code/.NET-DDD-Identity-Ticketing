@@ -13,6 +13,7 @@ namespace Mega.Ticketing.Domain.Entities
         public string UserId { get; set; }
         public string Code { get; set; }
         public string UserName { get; set; }
+        public string Title { get; set; }
 
         //Foreign Keys
         public Guid CartableId { get; set; }
