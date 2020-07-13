@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Mega.Ticketing.Dashboard.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class CompanyController : Controller
     {
         private readonly ICompanyService _companyService;

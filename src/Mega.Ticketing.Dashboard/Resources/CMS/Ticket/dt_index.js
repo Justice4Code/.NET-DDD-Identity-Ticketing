@@ -8,7 +8,6 @@ var productDataTable = function () {
 	// Ticket initializer
 	var Ticket = function () {
 
-
 		var datatable = $('.kt-datatable').KTDatatable({
 			// datasource definition
 			data: {
@@ -62,7 +61,27 @@ var productDataTable = function () {
 					visible: false,
 				}, {
 					field: 'UserName',
-					title: 'عنوان شرکت',
+					title: 'نام کاربری',
+					template: function (row) {
+						if (row.UserName) {
+							return row.UserName;
+						} else {
+							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">بدون عنوان </span>';
+						}
+					}
+				}, {
+					field: 'Code',
+					title: 'کد تیکت',
+					template: function (row) {
+						if (row.Code) {
+							return row.Code;
+						} else {
+							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">بدون عنوان </span>';
+						}
+					}
+				}, {
+					field: 'Title',
+					title: 'عنوان تیکت',
 					template: function (row) {
 						if (row.Title) {
 							return row.Title;
@@ -70,6 +89,19 @@ var productDataTable = function () {
 							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">بدون عنوان </span>';
 						}
 					}
+				}, {
+					field: 'Status',
+					title: 'وضعیت',
+					// callback function support for column rendering
+					template: function (row) {
+						var status = {
+							0: { 'title': 'خوانده نشده', 'class': ' kt-badge--danger' },
+							1: { 'title': 'در حال بررسی', 'class': ' kt-badge--warning' },
+							2: { 'title': 'پاسخ داده شده', 'class': ' kt-badge--info' },
+							3: { 'title': 'بسته شده', 'class': ' kt-badge--success' }
+						};
+						return '<span class="kt-badge ' + status[row.status].class + ' kt-badge--inline kt-badge--pill">' + status[row.status].title + '</span>';
+					},
 				}, {
 					field: 'CreatedDate',
 					title: 'تاریخ درج',
@@ -87,7 +119,7 @@ var productDataTable = function () {
 							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">بدون تاریخ</span>';
 						}
 					}
-				},{
+				}, {
 					field: 'Actions',
 					title: 'عملیات',
 					sortable: false,
@@ -98,8 +130,7 @@ var productDataTable = function () {
 						return '\
 						<a href="javascript:;" class="btn btn-sm btn-clean btn-icon btn-icon-md Ticket-reply" title="پاسخ گویی" data-id="'+ data.Id + '">\
 							<i class="la la-edit"></i>\
-						</a>
-					';
+						</a>';
 					},
 				}],
 			translate: {

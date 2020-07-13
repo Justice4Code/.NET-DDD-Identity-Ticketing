@@ -10,10 +10,11 @@ using Mega.Ticketing.Dashboard.Models;
 using System.Data.Entity;
 using Mega.Ticketing.Presistance.Core;
 using Mega.Ticketing.Domain.Entities;
+using System.Collections.Generic;
 
 namespace Mega.Ticketing.Dashboard.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -79,7 +80,23 @@ namespace Mega.Ticketing.Dashboard.Controllers
             {
                 var data = db.Users.Include(x => x.Company).ToList();
                 if (data != null && data.Count > 0)
-                    return Json(data, JsonRequestBehavior.AllowGet);
+                {
+                    var list = new List<UsersViewModel>();
+                    foreach (var item in data)
+                    {
+                        list.Add(new UsersViewModel()
+                        {
+                            Id = item.Id,
+                            UserName = item.UserName,
+                            FirstName = item.FirstName,
+                            LastName = item.LastName,
+                            VirtualName = item.VirtualName,
+                            CompanyTitle = item.Company != null ? item.Company.Title : ""
+                        });
+                    }
+                    return Json(list, JsonRequestBehavior.AllowGet);
+
+                }
                 return Json(new { }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -91,11 +108,17 @@ namespace Mega.Ticketing.Dashboard.Controllers
         public ActionResult AjaxCreate(ApplicationUser dto)
         {
             var processResponse = new Response();
+            dto.CreatedDate = DateTime.Now;
+            dto.PasswordHash = new PasswordHasher().HashPassword(dto.Password);
+            dto.SecurityStamp = Guid.NewGuid().ToString(); 
+            
             try
             {
                 int row = 0;
                 using (var db = new IdentityTicketingDbContext())
                 {
+                    var role = db.Roles.FirstOrDefault(x => x.Name == "User"); 
+                    dto.Roles.Add(new Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole() { UserId = dto.Id, RoleId = role.Id }); 
                     db.Users.Add(dto);
                     row = db.SaveChanges();
                 }
@@ -125,7 +148,8 @@ namespace Mega.Ticketing.Dashboard.Controllers
                     entity.FirstName = dto.FirstName;
                     entity.LastName = dto.LastName;
                     entity.UserName = dto.UserName;
-                    entity.PasswordHash = new PasswordHasher().HashPassword(dto.Password);
+                    if (entity.PasswordHash != dto.Password)
+                        entity.PasswordHash = new PasswordHasher().HashPassword(dto.Password);
                     entity.VirtualName = dto.VirtualName;
                     entity.Email = dto.Email;
                     entity.PhoneNumber = dto.PhoneNumber;
@@ -151,12 +175,18 @@ namespace Mega.Ticketing.Dashboard.Controllers
             var processResponse = new Response();
             try
             {
-                var response = _userManager.Delete(_userManager.FindById(id));
+                using (var db = new IdentityTicketingDbContext())
+                {
+                    var user = db.Users.Find(id);
+                    db.Users.Remove(user);
+                    db.SaveChanges(); 
+                }
+                //var response = _userManager.Delete(_userManager.FindById(id));
 
-                if (response.Succeeded)
+                if (true)
                     return Json(new { Result = "Ok", JsonRequestBehavior.AllowGet });
-                processResponse.Failed($"Message : {response.Errors}");
-                return Json(new { Error = $"IsSuccess = {response.Succeeded} | Error = {response.Errors}" }, JsonRequestBehavior.AllowGet);
+                processResponse.Failed($"Message : {false}");
+                return Json(new { Error = $"IsSuccess = {false} | Error = {false}" }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

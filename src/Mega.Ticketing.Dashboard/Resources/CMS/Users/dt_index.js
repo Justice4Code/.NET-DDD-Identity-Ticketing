@@ -103,8 +103,8 @@ var productDataTable = function () {
 					field: 'Company',
 					title: 'عنوان شرکت',
 					template: function (row) {
-						if (row.Company) {
-							return row.Company.Title;
+						if (row.CompanyTitle) {
+							return row.CompanyTitle;
 						} else {
 							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">بدون عنوان </span>';
 						}
@@ -166,11 +166,11 @@ var productDataTable = function () {
 jQuery(document).ready(function () {
 	productDataTable.init();
 	$(document).on('click', '#createUsers', function () {
-		MegaYadakModal.inst.Modal('#create', '/Manage/Create', 900, 400, false);
+		MegaYadakModal.inst.Modal('#create', '/Manage/Create', 900, 450, false);
 	});
 	$(document).on('click', '.Users-edit', function () {
 		var id = $(this).attr('data-id');
-		MegaYadakModal.inst.Modal('#edit', `/Manage/Edit/${id}`, 900, 400, false);
+		MegaYadakModal.inst.Modal('#edit', `/Manage/Edit/${id}`, 900, 450, false);
 	});
 	$(document).on('click', '.Users-delete', function () {
 		var id = $(this).attr('data-id');

@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using Mega.Ticketing.Dashboard.Models;
 using Mega.Ticketing.Domain.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Mega.Ticketing.Presistance.Core;
 
 namespace Mega.Ticketing.Dashboard.Controllers
 {
@@ -87,7 +88,7 @@ namespace Mega.Ticketing.Dashboard.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "نام کاربری یا رمز عبور شما اشتباه می باشد.");
                     return View(model);
             }
         }
@@ -140,6 +141,10 @@ namespace Mega.Ticketing.Dashboard.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            var RoleManager = new RoleManager<IdentityRole>(
+                  new RoleStore<IdentityRole>(new IdentityTicketingDbContext()));
+            var roleresult = RoleManager.Create(new IdentityRole("Admin"));
+            RoleManager.Create(new IdentityRole("User"));
             return View();
         }
 
@@ -154,11 +159,14 @@ namespace Mega.Ticketing.Dashboard.Controllers
             {
                 var user = new ApplicationUser
                 {
+                    Id = Guid.NewGuid().ToString(),
                     UserName = model.UserName,
                     Email = model.Email,
                     CreatedDate = DateTime.Now
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                var roleresult = UserManager.AddToRole(user.Id, "Admin");
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);

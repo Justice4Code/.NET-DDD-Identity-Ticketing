@@ -1,1 +1,83 @@
-﻿
+﻿@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <!--begin::Page Custom Styles(used by this page) -->
+    <link href="~/Resources/Metronic/assets/css/pages/wizard/wizard-2.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Resources/Font/font-awesome-4.4.0/css/font-awesome.min.css" />
+
+    <!--end::Page Custom Styles -->
+}
+
+@model Mega.Ticketing.Domain.Entities.Conversation
+<style>
+    .filter-option-inner-inner {
+        text-align: right !important;
+    }
+</style>
+<div class="kt-portlet">
+    @Html.Action("History", "Ticket", new { id = ViewBag.Id })
+    <!--begin::Form-->
+    @using (Html.BeginForm("Reply", "Ticket", FormMethod.Post, new { id = "cform", @class = "kt-form" }))
+    {
+        <input type="hidden" name="TicketId" value="@ViewBag.Id" />
+        <div class="kt-portlet__body">
+            <div class="row">
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>پاسخ</label>
+                        @Html.TextAreaFor(x => x.Text, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-portlet__foot">
+            <div class="kt-form__actions">
+                <button type="submit" class="btn btn-primary">ثبت</button>
+                <button type="button" class="btn btn-danger" id="btnClose">انصراف</button>
+            </div>
+        </div>
+
+    }
+    <!--end::Form-->
+</div>
+
+
+
+@section Scripts{
+    <!--begin::Page Scripts(used by this page) -->
+
+    <script src="~/Resources/CMS/Extend/validation-extended.js"></script>
+    <script src="~/Resources/CMS/Extend/Notification.js"></script>
+    <script>
+        $(".kt-selectpicker").attr("data-live-search", "true");
+        $(".kt-selectpicker").attr("data-size", "5")
+        $('.kt-selectpicker').selectpicker();
+
+        //close modal
+        $(document).on('click', '#btnClose', function () {
+            MegaYadakModal.inst.CloseModal("#edit");
+        });
+    </script>
+    @*<script src="~/Resources/CMS/Products/Edit.js"></script>*@
+    @if (ViewBag.Success == true)
+    {
+        <script>
+            tto.success("موفقیت", "درخواست شما با موفقیت انجام شده است.");
+
+        </script>
+    }
+    else if (ViewBag.Success == false)
+    {
+        <script>
+            tto.alert("هشدار", "مشکلی در ارسال دیده شد. لطفا بررسی نمایید.");
+
+        </script>
+    }
+
+    <!--end::Page Scripts -->
+}
+
+
+
+

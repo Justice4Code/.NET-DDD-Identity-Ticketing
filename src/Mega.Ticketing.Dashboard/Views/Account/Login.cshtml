@@ -33,9 +33,12 @@
     <link href="~/Resources/Metronic/assets/css/skins/aside/dark.css" rel="stylesheet" type="text/css" />
     <link href="~/Resources/Font/font.css" rel="stylesheet" />
     <style>
-        *{
+        * {
             font-family: FaBYekan !important;
             text-align: right;
+        }
+        .validation-summary-errors{
+            direction: rtl !important; 
         }
     </style>
     <!--end::Layout Skins -->
@@ -55,9 +58,9 @@
                         <div class="kt-login__block">
                             <h3 class="kt-login__title">به سامانه تعامل با مشتری مگا خوش آمدید</h3>
                             @*<div class="kt-login__desc">
-                        Lorem ipsum dolor sit amet, coectetuer adipiscing
-                        <br>elit sed diam nonummy et nibh euismod
-                    </div>*@
+                                    Lorem ipsum dolor sit amet, coectetuer adipiscing
+                                    <br>elit sed diam nonummy et nibh euismod
+                                </div>*@
                         </div>
                     </div>
                 </div>
@@ -89,9 +92,12 @@
                                             <!--begin::Action-->
                                             <div class="kt-login__actions">
                                                 @*<a href="#" class="kt-link kt-login__link-forgot">
-                                            Forgot Password ?
-                                        </a>*@
+                                                        Forgot Password ?
+                                                    </a>*@
                                                 <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary" type="submit">ورود</button>
+                                            </div>
+                                            <div class="kt-login__actions" style="color:red">
+                                                @Html.ValidationSummary()
                                             </div>
                                             <!--end::Action-->
                                         }

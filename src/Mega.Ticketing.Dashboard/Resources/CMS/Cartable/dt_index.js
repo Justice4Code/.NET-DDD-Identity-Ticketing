@@ -175,11 +175,11 @@ var productDataTable = function () {
 jQuery(document).ready(function () {
 	productDataTable.init();
 	$(document).on('click', '#createCartable', function () {
-		MegaYadakModal.inst.Modal('#create', '/Cartable/Create', 900, 400, false);
+		MegaYadakModal.inst.Modal('#create', '/Cartable/Create', 900, 250, false);
 	});
 	$(document).on('click', '.Cartable-edit', function () {
 		var id = $(this).attr('data-id');
-		MegaYadakModal.inst.Modal('#edit', `/Cartable/Edit/${id}`, 900, 400, false);
+		MegaYadakModal.inst.Modal('#edit', `/Cartable/Edit/${id}`, 900, 250, false);
 	});
 	$(document).on('click', '.Cartable-delete', function () {
 		var id = $(this).attr('data-id');

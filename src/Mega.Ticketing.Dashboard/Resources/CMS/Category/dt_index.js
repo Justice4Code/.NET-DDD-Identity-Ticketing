@@ -162,11 +162,11 @@ var productDataTable = function () {
 jQuery(document).ready(function () {
 	productDataTable.init();
 	$(document).on('click', '#createCategory', function () {
-		MegaYadakModal.inst.Modal('#create', '/Category/Create', 900, 400, false);
+		MegaYadakModal.inst.Modal('#create', '/Category/Create', 900, 250, false);
 	});
 	$(document).on('click', '.Category-edit', function () {
 		var id = $(this).attr('data-id');
-		MegaYadakModal.inst.Modal('#edit', `/Category/Edit/${id}`, 900, 400, false);
+		MegaYadakModal.inst.Modal('#edit', `/Category/Edit/${id}`, 900, 250, false);
 	});
 	$(document).on('click', '.Category-delete', function () {
 		var id = $(this).attr('data-id');

@@ -154,11 +154,11 @@ var productDataTable = function () {
 jQuery(document).ready(function () {
 	productDataTable.init();
 	$(document).on('click', '#createCompany', function () {
-		MegaYadakModal.inst.Modal('#create', '/Company/Create', 900, 400, false);
+		MegaYadakModal.inst.Modal('#create', '/Company/Create', 900, 250, false);
 	});
 	$(document).on('click', '.Company-edit', function () {
 		var id = $(this).attr('data-id');
-		MegaYadakModal.inst.Modal('#edit', `/Company/Edit/${id}`, 900, 400, false);
+		MegaYadakModal.inst.Modal('#edit', `/Company/Edit/${id}`, 900, 250, false);
 	});
 	$(document).on('click', '.Company-delete', function () {
 		var id = $(this).attr('data-id');

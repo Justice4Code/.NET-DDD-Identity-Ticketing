@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Mega.Ticketing.Dashboard.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class CartableController : Controller
     {
         private readonly ICartableService _cartableService;

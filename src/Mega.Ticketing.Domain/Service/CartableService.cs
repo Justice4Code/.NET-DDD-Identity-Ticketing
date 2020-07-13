@@ -42,6 +42,7 @@ namespace Mega.Ticketing.Domain.Service
         /// <param name="type"></param>
         /// <returns>an object of response class</returns>
         Response Delete(Guid id);
+        Response<Cartable> GetDefault(Guid companyId);
     }
     public class CartableService : ICartableService
     {
@@ -117,6 +118,24 @@ namespace Mega.Ticketing.Domain.Service
                 var ret = _context.Cartables.Get(id);
                 if (ret != null)
                     ProcessResponse.Result = ret;
+                else
+                    ProcessResponse.Failed("DAL Problem");
+            }
+            catch (Exception ex)
+            {
+                ProcessResponse.Failed($"Error : {ex.Message} - Inner Error : {ex.InnerException.Message }");
+            }
+            return ProcessResponse;
+        }
+
+        public Response<Cartable> GetDefault(Guid companyId)
+        {
+            var ProcessResponse = new Response<Cartable>();
+            try
+            {
+                var ret = _context.Cartables.Get(x => x.CompanyId == companyId && x.IsDefault == true && x.IsActive == true);
+                if (ret != null)
+                    ProcessResponse.Result = ret.FirstOrDefault();
                 else
                     ProcessResponse.Failed("DAL Problem");
             }

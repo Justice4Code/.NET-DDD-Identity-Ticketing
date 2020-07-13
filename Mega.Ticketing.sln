@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mega.Ticketing.Domain", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mega.Ticketing.Presistance", "src\Mega.Ticketing.Presistance\Mega.Ticketing.Presistance.csproj", "{3BF8D9DA-D295-4C82-921C-39A8C514C5C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mega.Ticketing.Api", "src\Mega.Ticketing.Api\Mega.Ticketing.Api.csproj", "{0A8B2319-D513-4B41-8FD5-FCC877C1D9F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3BF8D9DA-D295-4C82-921C-39A8C514C5C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BF8D9DA-D295-4C82-921C-39A8C514C5C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BF8D9DA-D295-4C82-921C-39A8C514C5C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A8B2319-D513-4B41-8FD5-FCC877C1D9F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A8B2319-D513-4B41-8FD5-FCC877C1D9F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A8B2319-D513-4B41-8FD5-FCC877C1D9F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A8B2319-D513-4B41-8FD5-FCC877C1D9F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

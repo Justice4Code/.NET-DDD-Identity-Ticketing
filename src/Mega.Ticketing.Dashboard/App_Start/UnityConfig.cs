@@ -68,6 +68,12 @@ namespace Mega.Ticketing.Dashboard
             container.RegisterType<IConversationRepository, ConversationRepository>();
             container.RegisterType<ITicketRepository, TicketRepository>();
             container.RegisterType<ICompanyService, CompanyService>();
+            container.RegisterType<ICartableService, CartableService>();
+            container.RegisterType<ICategoryService, CategoryService>();
+            container.RegisterType<ITicketService, TicketService>();
+            container.RegisterType<IConversationService, ConversationService>();
+
+
 
             var connectionString = ConfigurationManager.ConnectionStrings["Ticketing"].ConnectionString;
             container.RegisterType<ITicketingDbContextFactory, TicketingDbContextFactory>(

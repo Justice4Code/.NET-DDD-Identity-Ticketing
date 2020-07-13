@@ -1,0 +1,29 @@
+﻿@model Mega.Ticketing.Domain.Entities.Ticket
+
+
+<div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+        <h3 class="kt-portlet__head-title">
+            تیکت @(Model != null ? Model.Code : "")
+        </h3>
+    </div>
+</div>
+<div class="kt-portlet__body">
+    @if (Model != null)
+    {
+        @foreach (var item in Model.Conversations)
+        {
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="form-group">
+                        @Html.Raw(item.Text)
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    @item.FullName
+                </div>
+            </div>
+            <hr />
+        }
+    }
+</div>

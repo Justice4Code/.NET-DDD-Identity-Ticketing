@@ -80,7 +80,6 @@
     <Compile Include="Data\BaseRepository.cs" />
     <Compile Include="TicketingContext.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
