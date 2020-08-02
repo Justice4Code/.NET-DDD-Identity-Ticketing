@@ -47,10 +47,18 @@
                         @Html.Action("Cartables", "Partials", new
                        {
                            area = "CMS",
-                           selectedId = Model != null ? Model.CartableId : Guid.Empty,
+                           selectedValue = Model != null ? Model.CartableId : Guid.Empty,
                            name = "CartableId",
                            cssClass = "kt-selectpicker"
                        })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>فعال باشد؟</label>
+                        @Html.EditorFor(x => x.IsActive)
                     </div>
                 </div>
             </div>
@@ -88,14 +96,14 @@
     {
         <script>
             tto.success("موفقیت", "درخواست شما با موفقیت انجام شده است.");
-
+            MegaYadakModal.inst.CloseModal("#edit");
         </script>
     }
     else if (ViewBag.Success == false)
     {
         <script>
             tto.alert("هشدار", "مشکلی در ارسال دیده شد. لطفا بررسی نمایید.");
-
+            MegaYadakModal.inst.CloseModal("#edit");
         </script>
     }
 

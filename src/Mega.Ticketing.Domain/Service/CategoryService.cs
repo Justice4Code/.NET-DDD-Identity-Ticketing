@@ -37,6 +37,12 @@ namespace Mega.Ticketing.Domain.Service
         /// <param name="id"></param>
         /// <returns>an object of response class</returns>
         Response Delete(Guid id);
+        /// <summary>
+        /// Gets all the categories for the company
+        /// </summary>
+        /// <param name="companyId"></param>
+        /// <returns></returns>
+        Response<List<Category>> GetAllCategoriesForCompany(Guid companyId);
 
     }
 
@@ -98,6 +104,26 @@ namespace Mega.Ticketing.Domain.Service
                 var ret = _context.Categories.Get(x => x.IsActive == true);
                 if (ret != null)
                     ProcessResponse.Result = ret.ToList();
+                else
+                    ProcessResponse.Failed("DAL Problem");
+            }
+            catch (Exception ex)
+            {
+                ProcessResponse.Failed($"Error : {ex.Message} - Inner Error : {ex.InnerException.Message }");
+            }
+            return ProcessResponse;
+        }
+
+        public Response<List<Category>> GetAllCategoriesForCompany(Guid companyId)
+        {
+            var ProcessResponse = new Response<List<Category>>();
+            try
+            {
+                var defaultCartable = _context.Cartables.Get(x => x.CompanyId == companyId && x.IsDefault == true && x.IsActive == true).FirstOrDefault(); 
+
+                var ret = _context.Categories.Get(x => x.CartableId == defaultCartable.Id).ToList();
+                if (ret != null)
+                    ProcessResponse.Result = ret;
                 else
                     ProcessResponse.Failed("DAL Problem");
             }

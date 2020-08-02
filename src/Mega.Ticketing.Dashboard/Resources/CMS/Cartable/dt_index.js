@@ -6,15 +6,13 @@ var productDataTable = function () {
 
 	// Cartable initializer
 	var Cartable = function () {
-
-
 		var datatable = $('.kt-datatable').KTDatatable({
 			// datasource definition
 			data: {
 				type: 'remote',
 				source: {
 					read: {
-						url: "/Cartable/IndexData",
+						url: "/Cartable/CartableData",
 						map: function (raw) {
 							var dataSet = raw;
 							if (typeof raw.data !== 'undefined') {
@@ -70,11 +68,11 @@ var productDataTable = function () {
 						}
 					}
 				}, {
-					field: 'Company',
+					field: 'CompanyTitle',
 					title: 'عنوان شرکت',
 					template: function (row) {
-						if (row.Company) {
-							return row.Company.Title;
+						if (row.CompanyTitle) {
+							return row.CompanyTitle;
 						} else {
 							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">بدون عنوان </span>';
 						}
@@ -84,11 +82,16 @@ var productDataTable = function () {
 					title: 'کارتابل اصلی',
 					// callback function support for column rendering
 					template: function (row) {
-						var status = {
-							true: { 'title': 'بلی', 'class': ' kt-badge--success' },
-							false: { 'title': 'خیر', 'class': ' kt-badge--danger' },
-						};
-						return '<span class="kt-badge ' + status[row.IsDefault].class + ' kt-badge--inline kt-badge--pill">' + status[row.IsDefault].title + '</span>';
+						if (row.IsDefault) {
+							var status = {
+								true: { 'title': 'بلی', 'class': ' kt-badge--success' },
+								false: { 'title': 'خیر', 'class': ' kt-badge--danger' },
+							};
+							return '<span class="kt-badge ' + status[row.IsDefault].class + ' kt-badge--inline kt-badge--pill">' + status[row.IsDefault].title + '</span>';
+						}
+						else {
+							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">خیر</span>';
+						}
 					},
 				}, {
 					field: 'CreatedDate',
@@ -112,11 +115,17 @@ var productDataTable = function () {
 					title: 'وضعیت',
 					// callback function support for column rendering
 					template: function (row) {
-						var status = {
-							true: { 'title': 'فعال', 'class': ' kt-badge--success' },
-							false: { 'title': 'غیر فعال', 'class': ' kt-badge--danger' },
-						};
-						return '<span class="kt-badge ' + status[row.IsActive].class + ' kt-badge--inline kt-badge--pill">' + status[row.IsActive].title + '</span>';
+						if (row.IsActive) {
+							var status = {
+								true: { 'title': 'فعال', 'class': ' kt-badge--success' },
+								false: { 'title': 'غیر فعال', 'class': ' kt-badge--danger' },
+							};
+							return '<span class="kt-badge ' + status[row.IsActive].class + ' kt-badge--inline kt-badge--pill">' + status[row.IsActive].title + '</span>';
+						}
+						else {
+							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">غیر فعال</span>';
+						}
+
 					},
 				}, {
 					field: 'Actions',
@@ -175,11 +184,11 @@ var productDataTable = function () {
 jQuery(document).ready(function () {
 	productDataTable.init();
 	$(document).on('click', '#createCartable', function () {
-		MegaYadakModal.inst.Modal('#create', '/Cartable/Create', 900, 250, false);
+		MegaYadakModal.inst.Modal('#create', '/Cartable/Create', 900, 350, false);
 	});
 	$(document).on('click', '.Cartable-edit', function () {
 		var id = $(this).attr('data-id');
-		MegaYadakModal.inst.Modal('#edit', `/Cartable/Edit/${id}`, 900, 250, false);
+		MegaYadakModal.inst.Modal('#edit', `/Cartable/Edit/${id}`, 900, 350, false);
 	});
 	$(document).on('click', '.Cartable-delete', function () {
 		var id = $(this).attr('data-id');

@@ -1,4 +1,5 @@
-﻿using Mega.Ticketing.Domain.Service;
+﻿using Mega.Ticketing.Domain.Entities.DTO;
+using Mega.Ticketing.Domain.Service;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace Mega.Ticketing.Dashboard.Controllers
         {
             return View();
         }
+        [HttpPost]
         public ActionResult Create(Domain.Entities.Cartable dto)
         {
             dto.CreatedBy = User.Identity.GetUserId();
@@ -48,10 +50,11 @@ namespace Mega.Ticketing.Dashboard.Controllers
                 return View(response.Result);
             return View();
         }
+        [HttpPost]
         public ActionResult Edit(Domain.Entities.Cartable dto)
         {
             dto.ModifiedBy = Guid.Parse(User.Identity.GetUserId());
-            dto.ModifiedDate = DateTime.Now; 
+            dto.ModifiedDate = DateTime.Now;
 
             var response = _cartableService.Save(dto);
             if (response.IsSuccessful)
@@ -67,12 +70,28 @@ namespace Mega.Ticketing.Dashboard.Controllers
         }
 
         #region Data
-        public ActionResult IndexData()
+        public ActionResult CartableData()
         {
             var data = _cartableService.GetAll();
             if (data.IsSuccessful && data.Result.Count > 0)
-                return Json(data.Result, JsonRequestBehavior.AllowGet);
-            return Json(new { }, JsonRequestBehavior.AllowGet);
+            {
+                var newData = new List<CartableDTO>();
+                foreach (var item in data.Result)
+                {
+                    newData.Add(new CartableDTO()
+                    {
+                        Id = item.Id,
+                        Title = item.Title,
+                        IsDefault = item.IsDefault,
+                        CreatedDate = item.CreatedDate,
+                        IsActive = item.IsActive,
+                        CompanyTitle = item.Company != null ? item.Company.Title : "ندارد"
+                    });
+                }
+                return Json(newData, JsonRequestBehavior.AllowGet);
+            }
+            Response.StatusCode = 400;
+            return Content("");
         }
         #endregion
     }

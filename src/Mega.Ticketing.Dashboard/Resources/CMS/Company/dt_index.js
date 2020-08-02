@@ -60,6 +60,16 @@ var productDataTable = function () {
 					sortable: false,
 					visible: false,
 				}, {
+					field: 'Api Key',
+					title: 'کلید Api',
+					template: function (row) {
+						if (row.Id) {
+							return row.Id;
+						} else {
+							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">بدون عنوان </span>';
+						}
+					}
+				}, {
 					field: 'Title',
 					title: 'عنوان شرکت',
 					template: function (row) {
@@ -158,7 +168,7 @@ jQuery(document).ready(function () {
 	});
 	$(document).on('click', '.Company-edit', function () {
 		var id = $(this).attr('data-id');
-		MegaYadakModal.inst.Modal('#edit', `/Company/Edit/${id}`, 900, 250, false);
+		MegaYadakModal.inst.Modal('#edit', `/Company/Edit/${id}`, 900, 400, false);
 	});
 	$(document).on('click', '.Company-delete', function () {
 		var id = $(this).attr('data-id');

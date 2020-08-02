@@ -55,7 +55,7 @@
                         @Html.Action("Companies", "Partials", new
                        {
                            area = "CMS",
-                           selectedId = Model != null ? Model.CompanyId : Guid.Empty,
+                           selectedValue = Model != null ? Model.CompanyId : Guid.Empty,
                            name = "CompanyId",
                            cssClass = "kt-selectpicker"
                        })
@@ -102,12 +102,14 @@
     {
         <script>
             tto.success("موفقیت", "درخواست شما با موفقیت انجام شده است.");
+            MegaYadakModal.inst.CloseModal("#edit");
         </script>
     }
     else if (ViewBag.Success == false)
     {
         <script>
             tto.alert("هشدار", "مشکلی در ارسال دیده شد. لطفا بررسی نمایید.");
+            MegaYadakModal.inst.CloseModal("#edit");
         </script>
     }
     <!--end::Page Scripts -->

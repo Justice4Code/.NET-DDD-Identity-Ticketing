@@ -1,1 +1,27 @@
-﻿
+﻿@model List<Mega.Ticketing.Domain.Entities.Cartable>
+
+@{
+    var name = ViewBag.Name != null ? ViewBag.Name : "Locations";
+    var cssClass = ViewBag.CssClass;
+    bool hasModel = Model != null && Model.Count > 0;
+    Guid selected = ViewBag.SelectedValue != null ? ViewBag.SelectedValue : Guid.Empty;
+}
+<style>
+    .bootstrap-select {
+        width: 100% !important;
+    }
+</style>
+
+<select id="@ViewBag.Id" name="@name" class="@cssClass ">
+    @if (hasModel)
+    {
+        <option>--- انتخاب نمایید ---</option>
+        foreach (var item in Model)
+        {
+            <option value="@item.Id" @(selected == item.Id ? "selected" : "")>@item.Title</option>
+        }
+    }
+</select>
+
+
+

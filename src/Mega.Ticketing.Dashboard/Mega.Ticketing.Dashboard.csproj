@@ -1824,6 +1824,7 @@
     <Content Include="Resources\Metronic\assets\plugins\global\fonts\summernote\summernote.woff2" />
     <Content Include="Resources\Font\iransans.ttf" />
     <Content Include="Resources\Font\Yekan.ttf" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

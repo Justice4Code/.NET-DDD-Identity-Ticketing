@@ -36,14 +36,6 @@
                 </div>
                 <div class="col-xl-6 col-sm-6">
                     <div class="form-group">
-                        <label>کارتابل اصلی</label>
-                        @Html.EditorFor(x => x.IsDefault, new { @class = "form-control" })
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-6 col-sm-6">
-                    <div class="form-group">
                         <label>کارتابل برای شرکت</label>
                         @Html.Action("Companies", "Partials", new
                        {
@@ -52,6 +44,14 @@
                            name = "CompanyId",
                            cssClass = "kt-selectpicker"
                        })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-sm-6">
+                    <div class="form-group">
+                        <label>کارتابل اصلی</label>
+                        @Html.EditorFor(x => x.IsDefault, new { @class = "form-control" })
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
 
         //close modal
         $(document).on('click', '#btnClose', function () {
-            MegaYadakModal.inst.CloseModal("#edit");
+            MegaYadakModal.inst.CloseModal("#create");
         });
     </script>
     @*<script src="~/Resources/CMS/Products/Edit.js"></script>*@
@@ -89,14 +89,14 @@
     {
         <script>
             tto.success("موفقیت", "درخواست شما با موفقیت انجام شده است.");
-
+            MegaYadakModal.inst.CloseModal("#create");
         </script>
     }
     else if (ViewBag.Success == false)
     {
         <script>
             tto.alert("هشدار", "مشکلی در ارسال دیده شد. لطفا بررسی نمایید.");
-
+            MegaYadakModal.inst.CloseModal("#create");
         </script>
     }
 

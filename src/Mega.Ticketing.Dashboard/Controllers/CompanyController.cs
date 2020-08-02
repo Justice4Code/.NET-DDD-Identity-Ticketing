@@ -1,7 +1,9 @@
 ﻿using Mega.Ticketing.Domain.Entities;
+using Mega.Ticketing.Domain.Entities.DTO;
 using Mega.Ticketing.Domain.Service;
 using Microsoft.AspNet.Identity;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Mega.Ticketing.Dashboard.Controllers
@@ -105,7 +107,21 @@ namespace Mega.Ticketing.Dashboard.Controllers
         {
             var data = _companyService.GetAll();
             if (data.IsSuccessful && data.Result.Count > 0)
-                return Json(data.Result, JsonRequestBehavior.AllowGet);
+            {
+                var newData = new List<CompanyDTO>();
+                foreach (var item in data.Result)
+                {
+                    newData.Add(new CompanyDTO()
+                    {
+                        Id = item.Id,
+                        Title = item.Title,
+                        CreatedDate = item.CreatedDate,
+                        IsActive = item.IsActive
+                    });
+                }
+                return Json(newData, JsonRequestBehavior.AllowGet);
+
+            }
             return Json(new { }, JsonRequestBehavior.AllowGet);
         }
 

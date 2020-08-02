@@ -85,6 +85,12 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\Conversation.cs" />
+    <Compile Include="Entities\DTO\AccessoryDTO.cs" />
+    <Compile Include="Entities\DTO\CartableDTO.cs" />
+    <Compile Include="Entities\DTO\CategoryDTO.cs" />
+    <Compile Include="Entities\DTO\CompanyDTO.cs" />
+    <Compile Include="Entities\DTO\ConversationDTO.cs" />
+    <Compile Include="Entities\DTO\TicketDTO.cs" />
     <Compile Include="Entities\Page.cs" />
     <Compile Include="Entities\Paginated.cs" />
     <Compile Include="Entities\Response.cs" />

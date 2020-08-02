@@ -137,7 +137,13 @@ namespace Mega.Ticketing.Domain.Service
                 if (ret != null)
                     ProcessResponse.Result = ret.FirstOrDefault();
                 else
-                    ProcessResponse.Failed("DAL Problem");
+                {
+                    ret = _context.Cartables.Get(x => x.CompanyId == companyId && x.IsActive == true);
+                    if (ret != null)
+                        ProcessResponse.Result = ret.FirstOrDefault();
+                    else
+                        ProcessResponse.Failed("DAL Problem");
+                }
             }
             catch (Exception ex)
             {

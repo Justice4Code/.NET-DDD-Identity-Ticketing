@@ -239,7 +239,9 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Requests\AddReplyRequest.cs" />
     <Compile Include="Models\Requests\CreateTicketRequest.cs" />
+    <Compile Include="Models\Requests\GetAllCategoriesRequest.cs" />
     <Compile Include="Models\Requests\GetAllTicketsForUserRequest.cs" />
+    <Compile Include="Models\Requests\GetTicketByIdRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -275,6 +277,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

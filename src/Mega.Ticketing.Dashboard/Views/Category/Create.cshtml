@@ -40,7 +40,7 @@
                         @Html.Action("Cartables", "Partials", new
                        {
                            area = "CMS",
-                           selectedId = Model != null ? Model.CartableId : Guid.Empty,
+                           selectedValue = Model != null ? Model.CartableId : Guid.Empty,
                            name = "CartableId",
                            cssClass = "kt-selectpicker"
                        })
@@ -73,7 +73,7 @@
 
         //close modal
         $(document).on('click', '#btnClose', function () {
-            MegaYadakModal.inst.CloseModal("#edit");
+            MegaYadakModal.inst.CloseModal("#create");
         });
     </script>
     @*<script src="~/Resources/CMS/Products/Edit.js"></script>*@
@@ -81,14 +81,14 @@
     {
         <script>
             tto.success("موفقیت", "درخواست شما با موفقیت انجام شده است.");
-
+            MegaYadakModal.inst.CloseModal("#create");
         </script>
     }
     else if (ViewBag.Success == false)
     {
         <script>
             tto.alert("هشدار", "مشکلی در ارسال دیده شد. لطفا بررسی نمایید.");
-
+            MegaYadakModal.inst.CloseModal("#create");
         </script>
     }
 

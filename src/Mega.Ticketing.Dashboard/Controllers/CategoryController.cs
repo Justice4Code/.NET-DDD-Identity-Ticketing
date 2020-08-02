@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Mega.Ticketing.Domain.Service;
+using Mega.Ticketing.Domain.Entities.DTO;
 
 namespace Mega.Ticketing.Dashboard.Controllers
 {
@@ -25,6 +26,7 @@ namespace Mega.Ticketing.Dashboard.Controllers
         {
             return View();
         }
+        [HttpPost]
         public ActionResult Create(Domain.Entities.Category dto)
         {
             dto.CreatedBy = User.Identity.GetUserId();
@@ -48,6 +50,7 @@ namespace Mega.Ticketing.Dashboard.Controllers
                 return View(response.Result);
             return View();
         }
+        [HttpPost]
         public ActionResult Edit(Domain.Entities.Category dto)
         {
             dto.ModifiedBy = Guid.Parse(User.Identity.GetUserId());
@@ -70,8 +73,24 @@ namespace Mega.Ticketing.Dashboard.Controllers
         {
             var data = _service.GetAll();
             if (data.IsSuccessful && data.Result.Count > 0)
-                return Json(data.Result, JsonRequestBehavior.AllowGet);
-            return Json(new { }, JsonRequestBehavior.AllowGet);
+            {
+                var newData = new List<CategoryDTO>();
+                foreach (var item in data.Result)
+                {
+                    newData.Add(new CategoryDTO()
+                    {
+                        Id = item.Id,
+                        Title = item.Title,
+                        CartableId = item.CartableId,
+                        CreatedDate = item.CreatedDate,
+                        IsActive = item.IsActive,
+                        CartableTitle = item.Cartable != null ? item.Cartable.Title : "ندارد"
+                    });
+                }
+                return Json(newData, JsonRequestBehavior.AllowGet);
+            }
+            Response.StatusCode = 400;
+            return Content("");
         }
         #endregion
     }

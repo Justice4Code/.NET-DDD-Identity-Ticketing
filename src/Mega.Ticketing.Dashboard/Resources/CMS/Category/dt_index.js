@@ -69,10 +69,10 @@ var productDataTable = function () {
 					}
 				}, {
 					field: 'Cartable',
-					title: 'عنوان شرکت',
+					title: 'کارتابل مالک',
 					template: function (row) {
-						if (row.Cartable) {
-							return row.Cartable.Title;
+						if (row.CartableTitle) {
+							return row.CartableTitle;
 						} else {
 							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">بدون عنوان </span>';
 						}
@@ -99,11 +99,15 @@ var productDataTable = function () {
 					title: 'وضعیت',
 					// callback function support for column rendering
 					template: function (row) {
-						var status = {
-							true: { 'title': 'فعال', 'class': ' kt-badge--success' },
-							false: { 'title': 'غیر فعال', 'class': ' kt-badge--danger' },
-						};
-						return '<span class="kt-badge ' + status[row.IsActive].class + ' kt-badge--inline kt-badge--pill">' + status[row.IsActive].title + '</span>';
+						if (row.IsActive) {
+							var status = {
+								true: { 'title': 'فعال', 'class': ' kt-badge--success' },
+								false: { 'title': 'غیر فعال', 'class': ' kt-badge--danger' },
+							};
+							return '<span class="kt-badge ' + status[row.IsActive].class + ' kt-badge--inline kt-badge--pill">' + status[row.IsActive].title + '</span>';
+						} else {
+							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">غیر فعال</span>';
+						}
 					},
 				}, {
 					field: 'Actions',
@@ -162,11 +166,11 @@ var productDataTable = function () {
 jQuery(document).ready(function () {
 	productDataTable.init();
 	$(document).on('click', '#createCategory', function () {
-		MegaYadakModal.inst.Modal('#create', '/Category/Create', 900, 250, false);
+		MegaYadakModal.inst.Modal('#create', '/Category/Create', 900, 280, false);
 	});
 	$(document).on('click', '.Category-edit', function () {
 		var id = $(this).attr('data-id');
-		MegaYadakModal.inst.Modal('#edit', `/Category/Edit/${id}`, 900, 250, false);
+		MegaYadakModal.inst.Modal('#edit', `/Category/Edit/${id}`, 900, 400, false);
 	});
 	$(document).on('click', '.Category-delete', function () {
 		var id = $(this).attr('data-id');

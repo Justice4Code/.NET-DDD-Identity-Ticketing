@@ -93,7 +93,7 @@
                         @Html.Action("Companies", "Partials", new
                        {
                            area = "CMS",
-                           selectedId = Model != null ? Model.CompanyId : Guid.Empty,
+                           selectedValue = Model != null ? Model.CompanyId : Guid.Empty,
                            name = "CompanyId",
                            cssClass = "kt-selectpicker"
                        })
