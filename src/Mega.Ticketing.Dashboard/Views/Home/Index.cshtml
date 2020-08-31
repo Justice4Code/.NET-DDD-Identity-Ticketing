@@ -1,6 +1,14 @@
 ﻿<!-- Layout -->
 @{
+    ViewBag.Breadcrumb = new string[,] { { "داشبورد اصلی", "/Home/Index" }, { "داشبورد اصلی", "/Home/Index" } };
     Layout = "~/Views/Shared/_PanelLayout.cshtml";
+
 }
 <!-- End Layout -->
+<div class="kt-portlet kt-portlet--mobile">
+    <div class="kt-portlet__body">
+        @Html.Action("Cartables", "Home")
+    </div>
+</div>
+
 

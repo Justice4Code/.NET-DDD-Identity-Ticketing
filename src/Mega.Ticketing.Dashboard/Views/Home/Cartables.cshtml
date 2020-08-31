@@ -1,11 +1,10 @@
 ﻿@model List<Mega.Ticketing.Domain.Entities.Cartable>
 
 @if (Model != null && Model.Count > 0)
-{
-    foreach (var item in Model)
-    {
-        <div class="row">
-            <div class="col-lg-3" id="createCartable">
+{<div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-3" id="createCartable">
                 <div class="kt-portlet kt-iconbox kt-iconbox--info kt-iconbox--animate-slow">
                     <div class="kt-portlet__body">
                         <div class="kt-iconbox__body">
@@ -30,6 +29,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 }

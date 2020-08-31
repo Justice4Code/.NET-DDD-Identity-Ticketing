@@ -4,7 +4,7 @@
 var productDataTable = function () {
 	//functions
 	var self = this;
-	this.CartableId = $('#cartable').val();
+	//this.CartableId = $('#cartable').val();
 	// Ticket initializer
 	var Ticket = function () {
 
@@ -14,7 +14,7 @@ var productDataTable = function () {
 				type: 'remote',
 				source: {
 					read: {
-						url: `/Ticket/IndexData/id=${$(self.CartableId)}`,
+						url: `/Ticket/IndexData/${$('#cartable').val()}`,
 						map: function (raw) {
 							var dataSet = raw;
 							if (typeof raw.data !== 'undefined') {
@@ -94,13 +94,21 @@ var productDataTable = function () {
 					title: 'وضعیت',
 					// callback function support for column rendering
 					template: function (row) {
-						var status = {
-							0: { 'title': 'خوانده نشده', 'class': ' kt-badge--danger' },
-							1: { 'title': 'در حال بررسی', 'class': ' kt-badge--warning' },
-							2: { 'title': 'پاسخ داده شده', 'class': ' kt-badge--info' },
-							3: { 'title': 'بسته شده', 'class': ' kt-badge--success' }
-						};
-						return '<span class="kt-badge ' + status[row.status].class + ' kt-badge--inline kt-badge--pill">' + status[row.status].title + '</span>';
+						if (row.Status == 0) {
+							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">خوانده نشده</span>';
+						}
+						else if (row.Status == 1) {
+							return '<span class="kt-badge kt-badge--warning kt-badge--inline kt-badge--pill">در حال بررسی</span>';
+						}
+						else if (row.Status == 2) {
+							return '<span class="kt-badge kt-badge--info kt-badge--inline kt-badge--pill">پاسخ داده شده</span>';
+						}
+						else if (row.Status == 3) {
+							return '<span class="kt-badge kt-badge--success kt-badge--inline kt-badge--pill">بسته شده</span>';
+						}
+						else  {
+							return '<span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill">' + row.Status + '</span>';
+						}
 					},
 				}, {
 					field: 'CreatedDate',

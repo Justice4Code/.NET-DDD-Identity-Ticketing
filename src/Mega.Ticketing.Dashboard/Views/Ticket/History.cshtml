@@ -11,19 +11,25 @@
 <div class="kt-portlet__body">
     @if (Model != null)
     {
-        @foreach (var item in Model.Conversations)
+        if (Model.Conversations != null)
         {
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="form-group">
-                        @Html.Raw(item.Text)
+            foreach (var item in Model.Conversations)
+            {
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="form-group">
+                            @Html.Raw(item.Text)
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        @item.FullName
+                    </div>
+                    <div class="col-sm-3">
+                        @item.CreatedDatePersian
                     </div>
                 </div>
-                <div class="col-xl-12">
-                    @item.FullName
-                </div>
-            </div>
-            <hr />
+                <hr />
+            }
         }
     }
 </div>

@@ -1,4 +1,5 @@
 ﻿using Mega.Ticketing.Domain.Entities;
+using Mega.Ticketing.Domain.Entities.DTO;
 using Mega.Ticketing.Domain.Service;
 using Mega.Ticketing.Presistance.Core;
 using Microsoft.AspNet.Identity;
@@ -35,7 +36,14 @@ namespace Mega.Ticketing.Dashboard.Controllers
         {
             var response = _ticketService.GetById(id);
             if (response.IsSuccessful)
+            {
+                if (response.Result.Status == 0)
+                {
+                    response.Result.Status = 1;
+                    _ticketService.Update(response.Result);
+                }
                 return View(response.Result);
+            }
             return View();
         }
         [HttpPost]
@@ -50,7 +58,7 @@ namespace Mega.Ticketing.Dashboard.Controllers
             }
 
             conversation.Id = Guid.NewGuid();
-            conversation.UserId = userId; 
+            conversation.UserId = userId;
             conversation.FullName = currentUser != null ? (!string.IsNullOrEmpty(currentUser.VirtualName) ? currentUser.VirtualName : "پشتیبان سیستم") : "پشتیبان سیستم";
             var response = _conversationService.Save(conversation);
             if (response.IsSuccessful)
@@ -63,7 +71,7 @@ namespace Mega.Ticketing.Dashboard.Controllers
             }
             var responseSec = _ticketService.GetById(conversation.TicketId);
             if (responseSec.IsSuccessful)
-                return View(responseSec.Result);
+                return View(responseSec.Result.Conversations);
             return View();
         }
 
@@ -73,7 +81,22 @@ namespace Mega.Ticketing.Dashboard.Controllers
         {
             var data = _ticketService.GetByCartableId(id);
             if (data.IsSuccessful && data.Result.Count > 0)
-                return Json(data.Result, JsonRequestBehavior.AllowGet);
+            {
+                var list = new List<TicketDTO>();
+                foreach (var item in data.Result)
+                {
+                    list.Add(new TicketDTO()
+                    {
+                        Id = item.Id,
+                        UserName = item.UserName,
+                        Code = item.Code,
+                        CreatedDate = item.CreatedDate,
+                        Title = item.Title,
+                        Status = item.Status
+                    });
+                }
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
             return Json(new { }, JsonRequestBehavior.AllowGet);
         }
 

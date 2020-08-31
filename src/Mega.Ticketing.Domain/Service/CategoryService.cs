@@ -119,9 +119,9 @@ namespace Mega.Ticketing.Domain.Service
             var ProcessResponse = new Response<List<Category>>();
             try
             {
-                var defaultCartable = _context.Cartables.Get(x => x.CompanyId == companyId && x.IsDefault == true && x.IsActive == true).FirstOrDefault(); 
+                var defaultCartable = _context.Cartables.Get(x => x.CompanyId == companyId && x.IsDefault == true && x.IsActive == true).FirstOrDefault();
 
-                var ret = _context.Categories.Get(x => x.CartableId == defaultCartable.Id).ToList();
+                var ret = _context.Categories.Get(x => x.CartableId == defaultCartable.Id && x.IsActive == true).ToList();
                 if (ret != null)
                     ProcessResponse.Result = ret;
                 else

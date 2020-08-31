@@ -95,6 +95,7 @@
     <Compile Include="Entities\Paginated.cs" />
     <Compile Include="Entities\Response.cs" />
     <Compile Include="Entities\Ticket.cs" />
+    <Compile Include="Infrastructure\PersianDate.cs" />
     <Compile Include="Interface\ICategoryRepository.cs" />
     <Compile Include="Interface\IConversationRepository.cs" />
     <Compile Include="Interface\ITicketRepository.cs" />

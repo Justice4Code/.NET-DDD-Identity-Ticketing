@@ -22,6 +22,7 @@ namespace Mega.Ticketing.Api.Controllers
             _cartableService = cartableService;
             _categoryService = categoryService;
         }
+
         [HttpPost]
         public IHttpActionResult CreateTicket(CreateTicketRequest request)
         {
@@ -40,19 +41,20 @@ namespace Mega.Ticketing.Api.Controllers
             ticket.Title = request.Title;
             ticket.CategoryId = request.CategoryId;
             ticket.CartableId = cartable.Result.Id;
-            ticket.Code = Guid.NewGuid().ToString("N").ToUpper();
-            var first = _ticketService.Create(ticket);
+            ticket.Code = DateTime.Now.ToString("ddMMYYHHmmss");
+            var ticketResponse = _ticketService.Create(ticket);
 
             var conversation = new Conversation();
             conversation.Id = Guid.NewGuid();
             conversation.FullName = request.UserApplicationName;
             conversation.UserId = request.UserApplicationId;
             conversation.TicketId = ticket.Id;
-            var second = _conversationService.Save(conversation);
+            conversation.Text = request.Text; 
+            var conversationResponse = _conversationService.Save(conversation);
 
-            if (first.IsSuccessful && second.IsSuccessful)
-                return Ok();
-            return BadRequest($"{first.Error} - {second.Error}");
+            if (ticketResponse.IsSuccessful && conversationResponse.IsSuccessful)
+                return Ok(ticketResponse);
+            return BadRequest($"{ticketResponse.Error} - {conversationResponse.Error}");
         }
         [HttpPost]
         public IHttpActionResult AddReply(AddReplyRequest request)
@@ -68,7 +70,7 @@ namespace Mega.Ticketing.Api.Controllers
             conversation.TicketId = request.TicketId;
             var ret = _conversationService.Save(conversation);
             if (ret.IsSuccessful)
-                return Ok();
+                return Ok(ret);
             return BadRequest(ret.Error);
         }
         [HttpPost]
@@ -76,6 +78,8 @@ namespace Mega.Ticketing.Api.Controllers
         {
             if (request == null)
                 return BadRequest();
+
+            var processResponse = new Response<TicketDTO>();
 
             var ret = _ticketService.GetById(request.TicketId);
             if (ret.IsSuccessful && ret.Result != null)
@@ -103,7 +107,8 @@ namespace Mega.Ticketing.Api.Controllers
                             CreatedDate = item.CreatedDate
                         });
                     }
-                return Ok(dto);
+                processResponse.Result = dto;
+                return Ok(processResponse);
             }
             return BadRequest(ret.Error);
         }
@@ -113,6 +118,8 @@ namespace Mega.Ticketing.Api.Controllers
             if (request == null)
                 return BadRequest();
 
+            var processResponse = new Response<List<TicketDTO>>();
+
             var ret = _ticketService.GetByUserId(request.UserApplicationId);
             if (ret.IsSuccessful && ret.Result != null)
             {
@@ -121,6 +128,7 @@ namespace Mega.Ticketing.Api.Controllers
                 {
                     dto.Add(new TicketDTO()
                     {
+                        Id = item.Id,
                         CreatedDate = item.CreatedDate,
                         Status = item.Status,
                         UserId = item.UserId,
@@ -130,7 +138,8 @@ namespace Mega.Ticketing.Api.Controllers
                         CartableId = item.CartableId
                     });
                 }
-                return Ok(dto);
+                processResponse.Result = dto;
+                return Ok(processResponse);
             }
             return BadRequest(ret.Error);
         }
@@ -140,9 +149,23 @@ namespace Mega.Ticketing.Api.Controllers
             if (request == null && request.CompanyId == Guid.Empty)
                 return BadRequest();
 
+            var processResponse = new Response<List<CategoryDTO>>();
+
             var ret = _categoryService.GetAllCategoriesForCompany(request.CompanyId);
-            if (ret.IsSuccessful)
-                return Ok(ret.Result);
+            if (ret.IsSuccessful && ret.Result != null)
+            {
+                var dto = new List<CategoryDTO>();
+                foreach (var item in ret.Result)
+                {
+                    dto.Add(new CategoryDTO()
+                    {
+                        Id = item.Id,
+                        Title = item.Title
+                    });
+                }
+                processResponse.Result = dto;
+                return Ok(processResponse);
+            }
             return BadRequest(ret.Error);
         }
     }

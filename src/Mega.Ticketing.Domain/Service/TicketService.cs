@@ -113,7 +113,7 @@ namespace Mega.Ticketing.Domain.Service
             var ProcessResponse = new Response<List<Ticket>>();
             try
             {
-                var ret = _context.Tickets.Get(x => x.CartableId == cartableId && x.IsActive == true);
+                var ret = _context.Tickets.Get(x => x.CartableId == cartableId);
                 if (ret != null)
                     ProcessResponse.Result = ret.ToList();
                 else
@@ -169,7 +169,22 @@ namespace Mega.Ticketing.Domain.Service
 
         public Response Update(Ticket obj)
         {
-            throw new NotImplementedException();
+            var ProcessResponse = new Response();
+            try
+            {
+                if (obj == null)
+                    ProcessResponse.Failed("Object is null");
+                _context.Tickets.Update(obj);
+                var ret = _context.Commit();
+                if (ret)
+                    ProcessResponse.Failed("DAL Problem");
+
+            }
+            catch (Exception ex)
+            {
+                ProcessResponse.Failed($"Error : {ex.Message} - Inner Error : {ex.InnerException.Message }");
+            }
+            return ProcessResponse;
         }
     }
 }
